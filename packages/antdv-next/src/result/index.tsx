@@ -59,7 +59,7 @@ const Icon = defineComponent<IconProps>(
   (props = defaultIconProps, { slots }) => {
     return () => {
       const { prefixCls, status } = props
-      const icon = getSlotPropsFnRun(slots, props, 'icon')
+      const icon = getSlotPropsFnRun(slots, props, 'icon', false)
       const className = classNames(`${prefixCls}-icon`)
       if (ExceptionStatus.includes(`${status}`)) {
         const SVGComponent = ExceptionMap[status as ExceptionStatusType]
@@ -72,7 +72,6 @@ const Icon = defineComponent<IconProps>(
       const iconNode = createVNode(
         IconMap[status as Exclude<ResultStatusType, ExceptionStatusType>],
       )
-
       if (icon === null || icon === false) {
         return null
       }
@@ -112,13 +111,21 @@ export interface ResultSlots {
   default?: () => any
 }
 
+const defaultResultProps = {
+  icon: undefined,
+  status: 'info',
+  title: undefined,
+  subTitle: undefined,
+  extra: undefined,
+} as any
+
 const Result = defineComponent<
   ResultProps,
   Record<string, any>,
   string,
   SlotsType<ResultSlots>
 >(
-  (props, { slots, attrs }) => {
+  (props = defaultResultProps, { slots, attrs }) => {
     const { prefixCls, direction, result } = useBaseConfig('result', props)
     const [wrapCSSVar, hashId, cssVarCls] = useStyle(prefixCls)
 
@@ -137,7 +144,7 @@ const Result = defineComponent<
       const subTitle = getSlotPropsFnRun(slots, props, 'subTitle')
       const title = getSlotPropsFnRun(slots, props, 'title')
       const extra = getSlotPropsFnRun(slots, props, 'extra')
-      const icon = getSlotPropsFnRun(slots, props, 'icon')
+      const icon = getSlotPropsFnRun(slots, props, 'icon', false)
       const children = filterEmpty(slots?.default?.())
       const mergedStyle = [result?.value?.style, (attrs as any).style]
 

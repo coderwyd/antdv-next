@@ -9,7 +9,7 @@ export function getSlotPropFn(slots: any, props: any, key: string) {
   return () => [fn]
 }
 
-export function getSlotPropsFnRun(slots: any, props: any, key: string) {
+export function getSlotPropsFnRun(slots: any, props: any, key: string, isNull = true) {
   const fn = getSlotPropFn(slots, props, key)
   if (typeof fn === 'function') {
     const nodes = filterEmpty(fn?.()).filter(v => v != null)
@@ -19,7 +19,7 @@ export function getSlotPropsFnRun(slots: any, props: any, key: string) {
       }
       return nodes
     }
-    return null
+    return isNull ? null : undefined
   }
   return fn
 }
