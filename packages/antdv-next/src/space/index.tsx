@@ -1,13 +1,15 @@
 import type { App, CSSProperties, SlotsType } from 'vue'
-import type { EmptyEmit, RenderNodeFn } from '../_util/type.ts'
+import type { Orientation, SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
+import type { EmptyEmit, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import type { SizeType } from '../config-provider/SizeContext'
 import { classNames } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
 import { computed, defineComponent, shallowRef } from 'vue'
 import { isPresetSize, isValidGapNumber } from '../_util/gapSize.ts'
-import { getSlotPropFn } from '../_util/tools.ts'
-import { useComponentConfig } from '../config-provider/context.ts'
+import { pureAttrs, useMergeSemantic, useOrientation, useToArr, useToProps } from '../_util/hooks'
+import { getSlotPropFn, toPropsRefs } from '../_util/tools.ts'
+import { useComponentBaseConfig } from '../config-provider/context.ts'
 import Compact from './Compact.tsx'
 import { useSpaceContextProvider } from './context.ts'
 import Item from './Item.tsx'
@@ -15,15 +17,24 @@ import useStyle from './style'
 
 export type SpaceSize = SizeType | number
 
+type SemanticName = 'root' | 'item' | 'separator'
+
+export type SpaceClassNamesType = SemanticClassNamesType<SpaceProps, SemanticName>
+
+export type SpaceStylesType = SemanticStylesType<SpaceProps, SemanticName>
+
 export interface SpaceProps extends ComponentBaseProps {
   size?: SpaceSize | [SpaceSize, SpaceSize]
-  direction?: 'horizontal' | 'vertical'
+  /** @deprecated please use `orientation` instead */
+  direction?: Orientation
+  orientation?: Orientation
+  vertical?: boolean
   // No `stretch` since many components do not support that.
   align?: 'start' | 'end' | 'center' | 'baseline'
-  split?: RenderNodeFn
+  separator?: VueNode
   wrap?: boolean
-  classes?: { item: string }
-  styles?: { item: CSSProperties }
+  classes?: SpaceClassNamesType
+  styles?: SpaceStylesType
 }
 
 const defaultSizeProps = {
@@ -33,7 +44,7 @@ const defaultSizeProps = {
 
 export interface SpaceSlots {
   default?: () => any
-  split?: () => any
+  separator?: () => any
 }
 
 const InternalSpace = defineComponent<
@@ -43,19 +54,55 @@ const InternalSpace = defineComponent<
   SlotsType<SpaceSlots>
 >(
   (props = defaultSizeProps, { slots, attrs }) => {
-    const componentCtx = useComponentConfig('space')
+    const {
+      prefixCls,
+      direction: directionConfig,
+      size: contextSize,
+      class: contextClassName,
+      style: contextStyle,
+      classes: contextClassNames,
+      styles: contextStyles,
+    } = useComponentBaseConfig('space', props, ['size'])
+    const {
+      orientation,
+      vertical,
+      direction,
+      size,
+      align,
+      classes,
+      styles,
+    } = toPropsRefs(props, 'orientation', 'vertical', 'direction', 'size', 'align', 'classes', 'styles')
+    const [mergedOrientation, mergedVertical] = useOrientation(orientation, vertical, direction)
 
     const sizes = computed(() => {
-      const size = props.size ?? componentCtx.value.size ?? 'small'
-      return Array.isArray(size) ? size : ([size, size] as const)
+      const _size = size.value ?? contextSize.value ?? 'small'
+      return Array.isArray(_size) ? _size : ([_size, _size] as const)
     })
     const isPresetVerticalSize = computed(() => isPresetSize(sizes.value?.[1]))
     const isPresetHorizontalSize = computed(() => isPresetSize(sizes.value?.[0]))
     const isValidVerticalSize = computed(() => isValidGapNumber(sizes.value?.[1]))
     const isValidHorizontalSize = computed(() => isValidGapNumber(sizes.value?.[0]))
-    const mergedAlign = computed(() => props.align === undefined && props.direction === 'horizontal' ? 'center' : props.align)
-    const prefixCls = computed(() => componentCtx.value.getPrefixCls('space', props.prefixCls))
+    const mergedAlign = computed(() => align.value === undefined && !mergedVertical.value ? 'center' : align.value)
     const [wrapCSSVar, hashId, cssVarCls] = useStyle(prefixCls)
+
+    // =========== Merged Props for Semantic ==========
+    const mergedProps = computed(() => {
+      return {
+        ...props,
+        orientation: mergedOrientation.value,
+        align: mergedAlign.value,
+      }
+    })
+
+    const [mergedClassNames, mergedStyles] = useMergeSemantic<
+      SpaceClassNamesType,
+      SpaceStylesType,
+      SpaceProps
+    >(
+      useToArr(contextClassNames, classes),
+      useToArr(contextStyles, styles),
+      useToProps(mergedProps),
+    )
 
     const latestIndex = shallowRef(0)
     useSpaceContextProvider(computed(() => {
@@ -64,27 +111,28 @@ const InternalSpace = defineComponent<
       }
     }))
     return () => {
-      const directionConfig = componentCtx.value.direction
       const verticalSize = sizes.value?.[1]
       const horizontalSize = sizes.value?.[0]
       const cls = classNames(
         prefixCls.value,
-        componentCtx.value.class,
+        contextClassName.value,
         hashId.value,
-        `${prefixCls.value}-${props.direction}`,
+        `${prefixCls.value}-${mergedOrientation.value}`,
         {
-          [`${prefixCls.value}-rtl`]: directionConfig === 'rtl',
+          [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
           [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
           [`${prefixCls.value}-gap-row-${verticalSize}`]: isPresetVerticalSize.value,
           [`${prefixCls.value}-gap-col-${horizontalSize}`]: isPresetHorizontalSize.value,
         },
+        (attrs as any).class,
         props.rootClass,
         cssVarCls.value,
+        mergedClassNames.value.root,
       )
       const childNodes = filterEmpty(slots?.default?.())
       const itemClassName = classNames(
         `${prefixCls.value}-item`,
-        props?.classes?.item ?? componentCtx?.value?.classes.item,
+        mergedClassNames.value.item,
       )
       // Calculate latest one
       const nodes = childNodes.map((child, i) => {
@@ -95,13 +143,15 @@ const InternalSpace = defineComponent<
         return (
           <Item
             className={itemClassName}
+            classes={mergedClassNames.value}
+            styles={mergedStyles.value}
             key={key}
             index={i}
             v-slots={{
               default: () => child,
-              split: getSlotPropFn(slots, props, 'split'),
+              separator: getSlotPropFn(slots, props, 'separator'),
             }}
-            style={props?.styles?.item ?? componentCtx.value?.styles?.item}
+            style={mergedStyles.value.item}
           />
         )
       })
@@ -120,7 +170,15 @@ const InternalSpace = defineComponent<
       if (!isPresetVerticalSize.value && isValidVerticalSize.value) {
         gapStyle.rowGap = typeof verticalSize === 'number' ? `${verticalSize}px` : verticalSize
       }
-      return wrapCSSVar(<div class={cls} style={[gapStyle, componentCtx.value.style]} {...attrs}>{nodes}</div>)
+      return wrapCSSVar(
+        <div
+          class={cls}
+          style={[gapStyle, mergedStyles.value.root, contextStyle.value, (attrs as any).style]}
+          {...pureAttrs(attrs)}
+        >
+          {nodes}
+        </div>,
+      )
     }
   },
   {
