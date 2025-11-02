@@ -4,7 +4,7 @@ import type { ComponentBaseProps } from '../config-provider/context'
 import { classNames } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
 import { unrefElement, useResizeObserver } from '@vueuse/core'
-import { computed, createVNode, defineComponent, isVNode, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
+import { computed, createVNode, defineComponent, isVNode, nextTick, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import throttleByAnimationFrameFn from '../_util/throttleByAnimationFrame'
 import { useConfig } from '../config-provider/context'
 import useStyle from './style'
@@ -119,25 +119,25 @@ export const Affix = defineComponent<InternalAffixProps, AffixEmits, string>(
         if (fixedTop !== undefined) {
           newState.affixStyle = {
             position: 'fixed',
-            top: fixedTop,
-            width: placeholderRect.width,
-            height: placeholderRect.height,
+            top: `${fixedTop}px`,
+            width: `${placeholderRect.width}px`,
+            height: `${placeholderRect.height}px`,
           }
           newState.placeholderStyle = {
-            width: placeholderRect.width,
-            height: placeholderRect.height,
+            width: `${placeholderRect.width}px`,
+            height: `${placeholderRect.height}px`,
           }
         }
         else if (fixedBottom !== undefined) {
           newState.affixStyle = {
             position: 'fixed',
-            bottom: fixedBottom,
-            width: placeholderRect.width,
-            height: placeholderRect.height,
+            bottom: `${fixedBottom}px`,
+            width: `${placeholderRect.width}px`,
+            height: `${placeholderRect.height}px`,
           }
           newState.placeholderStyle = {
-            width: placeholderRect.width,
-            height: placeholderRect.height,
+            width: `${placeholderRect.width}px`,
+            height: `${placeholderRect.height}px`,
           }
         }
 
@@ -236,13 +236,15 @@ export const Affix = defineComponent<InternalAffixProps, AffixEmits, string>(
       lastAffix,
       () => props.offsetTop,
       () => props.offsetBottom,
-    ], (_new, _old, onCleanup) => {
+    ], async (_new, _old, onCleanup) => {
+      await nextTick()
       addListeners()
 
       onCleanup(removeListeners)
     })
 
-    watch([() => props.target, () => props.offsetTop, () => props.offsetBottom], () => {
+    watch([() => props.target, () => props.offsetTop, () => props.offsetBottom], async () => {
+      await nextTick()
       updatePosition()
     })
 
