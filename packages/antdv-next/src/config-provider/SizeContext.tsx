@@ -19,3 +19,7 @@ export const SizeProvider = defineComponent<SizeContextProps>(
     }
   },
 )
+
+export function useSizeProvider(value: Ref<SizeType>) {
+  provide(SizeContextKey, value)
+}

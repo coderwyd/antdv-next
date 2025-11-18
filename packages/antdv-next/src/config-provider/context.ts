@@ -14,6 +14,7 @@ import type { DividerProps } from '../divider'
 import type { EmptyProps } from '../empty'
 import type { FlexProps } from '../flex'
 import type { FloatButtonGroupProps, FloatButtonProps } from '../float-button'
+import type { FormProps } from '../form/Form.tsx'
 import type { Locale } from '../locale'
 import type { MasonryProps } from '../masonry/Masonry.tsx'
 import type { MenuProps } from '../menu'
@@ -234,6 +235,18 @@ export type BreadcrumbConfig = ComponentStyleConfig & Pick<BreadcrumbProps, 'cla
 
 export type MasonryConfig = ComponentStyleConfig & Pick<MasonryProps, 'classes' | 'styles'>
 
+export type FormConfig = ComponentStyleConfig
+  & Pick<
+    FormProps,
+    | 'requiredMark'
+    | 'colon'
+    | 'scrollToFirstError'
+    | 'validateMessages'
+    | 'variant'
+    | 'classes'
+    | 'styles'
+  >
+
 export interface ConfigComponentProps {
   // input?: InputConfig;
   // textArea?: TextAreaConfig;
@@ -241,7 +254,7 @@ export interface ConfigComponentProps {
   // pagination?: PaginationConfig;
   space?: SpaceConfig
   splitter?: ComponentStyleConfig
-  // form?: FormConfig;
+  form?: FormConfig
   // select?: SelectConfig;
   alert?: AlertConfig
   anchor?: AnchorStyleConfig
