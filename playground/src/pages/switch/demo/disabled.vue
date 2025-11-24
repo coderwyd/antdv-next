@@ -10,13 +10,8 @@ function toggle() {
 <template>
   <a-space vertical>
     <a-switch default-checked :disabled="disabled" />
-
     <a-button type="primary" @click="toggle">
       Toggle disabled
     </a-button>
   </a-space>
 </template>
-
-<style scoped>
-
-</style>

@@ -17,7 +17,3 @@ const checked = shallowRef()
     </template>
   </a-switch>
 </template>
-
-<style scoped>
-
-</style>
