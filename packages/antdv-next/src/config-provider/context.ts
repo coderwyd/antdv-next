@@ -16,6 +16,7 @@ import type { EmptyProps } from '../empty'
 import type { FlexProps } from '../flex'
 import type { FloatButtonGroupProps, FloatButtonProps } from '../float-button'
 import type { FormProps } from '../form/Form.tsx'
+import type { InputProps } from '../input/Input.tsx'
 import type { Locale } from '../locale'
 import type { MasonryProps } from '../masonry/Masonry.tsx'
 import type { MenuProps } from '../menu'
@@ -255,8 +256,11 @@ export type CheckboxConfig = ComponentStyleConfig & Pick<CheckboxProps, 'classes
 
 export type SwitchStyleConfig = ComponentStyleConfig & Pick<SwitchProps, 'classes' | 'styles'>
 
+export type InputConfig = ComponentStyleConfig
+  & Pick<InputProps, 'autoComplete' | 'classes' | 'styles' | 'allowClear' | 'variant'>
+
 export interface ConfigComponentProps {
-  // input?: InputConfig;
+  input?: InputConfig
   // textArea?: TextAreaConfig;
   // inputNumber?: InputNumberConfig;
   // pagination?: PaginationConfig;
