@@ -10,7 +10,6 @@ import type {
 } from './interface'
 import ResizeObserver from '@v-c/resize-observer'
 import { clsx } from '@v-c/util'
-import { filterEmpty } from '@v-c/util/dist/props-util'
 import { omit } from 'es-toolkit'
 import { computed, defineComponent, Fragment, shallowRef } from 'vue'
 import { getAttrStyleAndClass, useMergeSemantic, useOrientation, useToArr, useToProps } from '../_util/hooks'
@@ -51,8 +50,7 @@ const Splitter = defineComponent<
     const reverse = computed(() => !isVertical.value && isRTL.value)
 
     // ====================== Items Data ======================
-    const childrenData = shallowRef<any[]>([])
-    const items = useItems(childrenData)
+    const items = useItems(slots)
 
     // >>> Warning for uncontrolled
 
@@ -177,7 +175,6 @@ const Splitter = defineComponent<
         draggerIcon,
         collapsibleIcon,
       } = props
-      childrenData.value = filterEmpty(slots?.default?.() ?? [])
       const { className, style, restAttrs } = getAttrStyleAndClass(attrs)
       const containerClassName = clsx(
         prefixCls.value,
