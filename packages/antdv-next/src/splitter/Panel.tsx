@@ -22,7 +22,7 @@ export const InternalPanel = defineComponent<InternalPanelProps>(
           style={{
             ...style,
             // Use auto when start from ssr
-            flexBasis: hasSize ? size : 'auto',
+            flexBasis: hasSize ? `${size}px` : 'auto',
             flexGrow: hasSize ? 0 : 1,
           }}
         >

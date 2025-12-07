@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import type { PanelProps } from '../interface.ts'
-import { computed, shallowRef, unref, watch } from 'vue'
+import { computed, shallowRef, unref } from 'vue'
 import { autoPtgSizes } from './sizeUtil.ts'
 
 export function getPtg(str: string) {
@@ -25,17 +25,23 @@ export default function useSizes(items: Ref<PanelProps[]>, containerSize?: Ref<n
 
   // We do not need care the size state match the `items` length in `useState`.
   // It will calculate later.
-  const innerSizes = shallowRef<(string | number | undefined)[]>(items.value?.map(item => item.defaultSize))
-  watch(
-    items,
-    () => {
-      innerSizes.value = items.value?.map(item => item.defaultSize)
-    },
-  )
+  const innerSizes = shallowRef<(string | number | undefined)[]>([])
+
+  // Track the last known items count to detect panel add/remove
+  let lastItemsCount = 0
 
   const sizes = computed(() => {
+    const currentCount = itemsCount.value
     const mergedSizes: PanelProps['size'][] = []
-    for (let i = 0; i < itemsCount.value; i += 1) {
+
+    // Initialize or re-initialize innerSizes when items count changes
+    // This happens on first render or when panels are added/removed
+    if (currentCount !== lastItemsCount) {
+      lastItemsCount = currentCount
+      innerSizes.value = items.value?.map(item => item.defaultSize)
+    }
+
+    for (let i = 0; i < currentCount; i += 1) {
       mergedSizes[i] = propSizes.value?.[i] ?? innerSizes.value?.[i]
     }
 
