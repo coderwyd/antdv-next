@@ -139,7 +139,6 @@ export default defineComponent(
         onFormatChange,
         disabledFormat,
       } = panelPickerContext.value!
-
       const showMode = (modeOptions?.length || 0) > 1
       const operationNode = allowClear || showMode
         ? (

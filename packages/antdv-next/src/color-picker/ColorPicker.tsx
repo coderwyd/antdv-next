@@ -178,13 +178,15 @@ const ColorPicker = defineComponent<
     const gradientDragging = shallowRef(false)
 
     const onInternalModeChange = (newMode: ModeType) => {
-      setModeState(newMode)
+      console.log(newMode, 'newMode')
       if (newMode === 'single' && mergedColor.value?.isGradient()) {
         activeIndex.value = 0
-        onInternalChange(new AggregationColor(mergedColor.value.getColors()[0]!.color!))
         cachedGradientColor.value = mergedColor.value
+        console.log(mergedColor.value.toCssString())
+        onInternalChange(new AggregationColor(mergedColor.value.getColors()[0]!.color!))
       }
       else if (newMode === 'gradient' && !mergedColor.value?.isGradient()) {
+        console.log('gradient', cachedGradientColor.value, cachedGradientColor.value?.toCssString?.())
         const baseColor = isAlphaColor.value ? genAlphaColor(mergedColor.value) : mergedColor.value
         onInternalChange(
           new AggregationColor(
@@ -195,6 +197,7 @@ const ColorPicker = defineComponent<
           ),
         )
       }
+      setModeState(newMode)
     }
 
     // ================== Form Status ==================
@@ -269,7 +272,6 @@ const ColorPicker = defineComponent<
         ...contextStyle.value,
         ...style,
       }
-
       const panelNode = (
         <ContextIsolator form>
           <ColorPickerPanel

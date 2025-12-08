@@ -133,18 +133,18 @@ const InternalSegmented = defineComponent<
         iconFromSlot = filterEmpty(Array.isArray(iconFromSlot) ? iconFromSlot : [iconFromSlot])
         const labelRender = slots.labelRender || props.labelRender
         let labelFromSlot = labelRender ? labelRender(_option) : null
-        labelFromSlot = filterEmpty(Array.isArray(labelFromSlot) ? labelFromSlot : [labelFromSlot])
+        labelFromSlot = filterEmpty(Array.isArray(labelFromSlot) ? labelFromSlot : [labelFromSlot]).filter(Boolean)
         if (isSegmentedLabeledOptionWithIcon(option, iconFromSlot)) {
           const { label, ...restOption } = option
           labelFromSlot = labelFromSlot.length > 0 ? labelFromSlot : label
-          const showLabel = (labelFromSlot && labelFromSlot.length > 0) || !!label
+          const showLabel = !!(labelFromSlot && labelFromSlot.length > 0) || !!label
           const icon = getSlotPropsFnRun({}, option, 'icon') ?? iconFromSlot
           return {
             ...restOption,
             label: (
               <>
                 <span
-                  class={clsx(`${prefixCls.value}-item.icon`, mergedClassNames.value?.icon)}
+                  class={clsx(`${prefixCls.value}-item-icon`, mergedClassNames.value?.icon)}
                   style={mergedStyles.value?.icon}
                 >
                   {icon}

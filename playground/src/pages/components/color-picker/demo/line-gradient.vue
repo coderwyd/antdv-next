@@ -27,14 +27,14 @@ function handleChangeComplete(value: any) {
       allow-clear
       show-text
       :mode="['single', 'gradient']"
-      @changeComplete="handleChangeComplete"
+      @change-complete="handleChangeComplete"
     />
     <a-color-picker
       v-model:value="gradientOnly"
       allow-clear
       show-text
       mode="gradient"
-      @changeComplete="handleChangeComplete"
+      @change-complete="handleChangeComplete"
     />
   </a-space>
 </template>

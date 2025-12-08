@@ -83,7 +83,6 @@ export type ColorPickerProps
   | 'components'> & {
     mode?: ModeType | ModeType[]
     value?: ColorValueType
-    color?: ColorValueType
     defaultValue?: ColorValueType
     open?: boolean
     disabled?: boolean
