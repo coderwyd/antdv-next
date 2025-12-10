@@ -37,7 +37,7 @@ import type { ComponentToken as NotificationComponentToken } from '../../notific
 // import type { ComponentToken as PaginationComponentToken } from '../../pagination/style';
 import type { ComponentToken as PopconfirmComponentToken } from '../../popconfirm/style'
 import type { ComponentToken as PopoverComponentToken } from '../../popover/style'
-// import type { ComponentToken as ProgressComponentToken } from '../../progress/style';
+import type { ComponentToken as ProgressComponentToken } from '../../progress/style'
 import type { ComponentToken as QRCodeComponentToken } from '../../qrcode/style'
 import type { ComponentToken as RadioComponentToken } from '../../radio/style'
 import type { ComponentToken as RateComponentToken } from '../../rate/style'
@@ -73,7 +73,6 @@ export interface ComponentTokenMap {
   Button?: ButtonComponentToken
   Breadcrumb?: BreadcrumbComponentToken
   Masonry?: MasonryComponentToken
-
   Card?: CardComponentToken
   // Carousel?: CarouselComponentToken;
   // Cascader?: CascaderComponentToken;
@@ -126,7 +125,7 @@ export interface ComponentTokenMap {
   Tooltip?: TooltipComponentToken
   // Table?: TableComponentToken;
   Space?: SpaceComponentToken
-  // Progress?: ProgressComponentToken;
+  Progress?: ProgressComponentToken
   Tour?: TourComponentToken
   QRCode?: QRCodeComponentToken
   App?: AppComponentToken
