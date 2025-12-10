@@ -122,8 +122,8 @@ const Line = defineComponent<
       // ========================= Rail =========================
       const railStyle = {
         backgroundColor: mergedRailColor || undefined,
-        borderRadius,
-        height,
+        borderRadius: `${borderRadius}px`,
+        height: `${height}px`,
       }
 
       // ======================== Tracks ========================
