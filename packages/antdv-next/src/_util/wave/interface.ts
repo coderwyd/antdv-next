@@ -3,7 +3,7 @@ import { defaultPrefixCls } from '../../config-provider/context.ts'
 
 export const TARGET_CLS = `${defaultPrefixCls}-wave-target`
 
-export type WaveComponent = 'Tag' | 'Button' | 'Checkbox' | 'Radio' | 'Switch'
+export type WaveComponent = 'Tag' | 'Button' | 'Checkbox' | 'Radio' | 'Switch' | 'Steps'
 
 export type ShowWaveEffect = (
   element: HTMLElement,

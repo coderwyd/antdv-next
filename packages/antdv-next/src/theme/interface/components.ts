@@ -51,7 +51,7 @@ import type { ComponentToken as SpinComponentToken } from '../../spin/style'
 // import type { ComponentToken as UploadComponentToken } from '../../upload/style';
 import type { ComponentToken as SplitterComponentToken } from '../../splitter/style'
 import type { ComponentToken as StatisticComponentToken } from '../../statistic/style'
-// import type { ComponentToken as StepsComponentToken } from '../../steps/style';
+import type { ComponentToken as StepsComponentToken } from '../../steps/style'
 import type { ComponentToken as SwitchComponentToken } from '../../switch/style'
 // import type { ComponentToken as TableComponentToken } from '../../table/style';
 import type { ComponentToken as TabsComponentToken } from '../../tabs/style'
@@ -117,7 +117,7 @@ export interface ComponentTokenMap {
   Transfer?: TransferComponentToken
   Tabs?: TabsComponentToken
   // Calendar?: CalendarComponentToken;
-  // Steps?: StepsComponentToken;
+  Steps?: StepsComponentToken
   Menu?: MenuComponentToken
   Modal?: ModalComponentToken
   Message?: MessageComponentToken

@@ -41,6 +41,7 @@ import type { SliderProps } from '../slider'
 import type { SpaceProps } from '../space'
 import type { SpinProps } from '../spin'
 import type { StatisticProps } from '../statistic'
+import type { StepsProps } from '../steps'
 import type { SwitchProps } from '../switch'
 import type { TabsProps } from '../tabs'
 import type { TagProps } from '../tag'
@@ -322,6 +323,8 @@ export type ModalConfig = ComponentStyleConfig
     | 'mask'
   >
 
+export type StepsConfig = ComponentStyleConfig & Pick<StepsProps, 'classes' | 'styles'>
+
 export interface ConfigComponentProps {
   input?: InputConfig
   inputNumber?: InputNumberConfig
@@ -349,7 +352,7 @@ export interface ConfigComponentProps {
   skeleton?: SkeletonConfig
   spin?: SpinConfig
   segmented?: SegmentedConfig
-  steps?: ComponentStyleConfig
+  steps?: StepsConfig
   statistic?: StatisticConfig
   // image?: ImageConfig;
   layout?: ComponentStyleConfig

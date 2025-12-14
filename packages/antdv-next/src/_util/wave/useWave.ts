@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+import type { WaveProps } from './index.tsx'
 import type { ShowWave, WaveComponent } from './interface'
 import raf from '@v-c/util/dist/raf'
 import { onBeforeUnmount, ref, unref } from 'vue'
@@ -11,6 +12,7 @@ export default function useWave(
   nodeRef: Ref<HTMLElement | null | undefined>,
   className: string | Ref<string>,
   component?: WaveComponent | Ref<WaveComponent | undefined>,
+  colorSource?: Ref<WaveProps['colorSource']>,
 ) {
   const configCtx = useConfig()
   const [, token, hashId] = useToken()
@@ -34,6 +36,7 @@ export default function useWave(
       component: unref(component) ?? undefined,
       event,
       hashId: hashId.value,
+      colorSource: colorSource ? unref(colorSource) : undefined,
     })
   }
 

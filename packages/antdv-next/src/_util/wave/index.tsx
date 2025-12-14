@@ -11,6 +11,7 @@ import useWave from './useWave'
 export interface WaveProps {
   disabled?: boolean
   component?: WaveComponent
+  colorSource?: 'color' | 'backgroundColor' | 'borderColor' | null
 }
 
 export interface WaveEmits {
@@ -47,9 +48,10 @@ export default defineComponent<WaveProps, WaveEmits, string, SlotsType<WaveSlots
 
     const prefixCls = computed(() => configCtx.value.getPrefixCls('wave'))
     const hashId = useStyle(prefixCls)
+    const colorSource = computed(() => props.colorSource)
     const waveClassName = computed(() => classNames(prefixCls.value, hashId.value))
 
-    const showWave = useWave(containerRef, waveClassName, computed(() => props.component))
+    const showWave = useWave(containerRef, waveClassName, computed(() => props.component), colorSource)
 
     const handleClick = (event: MouseEvent) => {
       const node = containerRef.value

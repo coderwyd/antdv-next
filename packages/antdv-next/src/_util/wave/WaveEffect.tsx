@@ -1,4 +1,5 @@
 import type { CSSProperties, PropType } from 'vue'
+import type { WaveProps } from './index.tsx'
 import type { ShowWaveEffect, WaveComponent } from './interface'
 import { classNames } from '@v-c/util'
 import raf from '@v-c/util/dist/raf'
@@ -24,6 +25,10 @@ export const WaveEffect = defineComponent({
     },
     component: {
       type: String as PropType<WaveComponent>,
+      required: false,
+    },
+    colorSource: {
+      type: String as PropType<WaveProps['colorSource']>,
       required: false,
     },
   },
@@ -78,7 +83,7 @@ export const WaveEffect = defineComponent({
         return
       }
       const nodeStyle = getComputedStyle(target)
-      waveColor.value = getTargetWaveColor(target)
+      waveColor.value = getTargetWaveColor(target, props.colorSource)
 
       const isStatic = nodeStyle.position === 'static'
       const { borderLeftWidth, borderTopWidth } = nodeStyle

@@ -272,6 +272,9 @@ importers:
       '@v-c/slider':
         specifier: ^1.0.8
         version: 1.0.8(vue@3.5.25(typescript@5.9.3))
+      '@v-c/steps':
+        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/steps
+        version: link:../../../../../github/antdv-next/vue-components/packages/steps
       '@v-c/switch':
         specifier: ^0.0.1
         version: 0.0.1(vue@3.5.25(typescript@5.9.3))
