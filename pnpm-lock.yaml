@@ -293,6 +293,9 @@ importers:
       '@v-c/tour':
         specifier: ^1.0.1
         version: 1.0.1(vue@3.5.25(typescript@5.9.3))
+      '@v-c/tree':
+        specifier: link:/Users/zhuzhengjian/workspace/gitea/antdv-next/vue-components/packages/tree
+        version: link:../../../vue-components/packages/tree
       '@v-c/trigger':
         specifier: ^1.0.2
         version: 1.0.2(vue@3.5.25(typescript@5.9.3))

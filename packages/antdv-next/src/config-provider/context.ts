@@ -50,6 +50,7 @@ import type { TagProps } from '../tag'
 import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../theme/interface'
 import type { TooltipProps } from '../tooltip'
 import type { TourProps } from '../tour'
+import type { TreeProps } from '../tree/Tree.tsx'
 import type { BlockProps as TypographyBaseProps } from '../typography/interface'
 import type { RenderEmptyHandler } from './defaultRenderEmpty'
 import { computed, inject, provide, ref } from 'vue'
@@ -333,6 +334,9 @@ export type ImageConfig = ComponentStyleConfig
       & Pick<ImageProps, 'classes' | 'styles'> & { mask?: MaskType }
     fallback?: string
   }
+
+export type TreeConfig = ComponentStyleConfig & Pick<TreeProps, 'classes' | 'styles'>
+
 export interface ConfigComponentProps {
   input?: InputConfig
   inputNumber?: InputNumberConfig
@@ -396,7 +400,7 @@ export interface ConfigComponentProps {
   popconfirm?: PopconfirmConfig
   // upload?: UploadConfig;
   notification?: NotificationConfig
-  tree?: ComponentStyleConfig
+  tree?: TreeConfig
   colorPicker?: ComponentStyleConfig
   // datePicker?: DatePickerConfig;
   // rangePicker?: RangePickerConfig;
@@ -547,6 +551,7 @@ export function useComponentBaseConfig<
     prefixCls: computed(() => {
       return context.value?.getPrefixCls(suffixCls ?? propName, props?.prefixCls)
     }),
+    rootPrefixCls: computed(() => context.value?.getPrefixCls()),
     getPopupContainer: context.value.getPopupContainer,
     getPrefixCls: context.value.getPrefixCls,
     getTargetContainer: context.value.getTargetContainer,

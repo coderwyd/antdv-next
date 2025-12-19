@@ -1,0 +1,278 @@
+import type { BasicDataNode, DataNode, TreeProps as VcTreeProps } from '@v-c/tree'
+import type { Key } from '@v-c/util/dist/type'
+import type { SlotsType } from 'vue'
+import type { SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
+import type { VueNode } from '../_util/type.ts'
+import { computed, defineComponent } from 'vue'
+import {
+  useMergeSemantic,
+  useToArr,
+  useToProps,
+} from '../_util/hooks'
+import initCollapseMotion from '../_util/motion.ts'
+import { toPropsRefs } from '../_util/tools.ts'
+import { useComponentBaseConfig } from '../config-provider/context.ts'
+import { useDisabledContext } from '../config-provider/DisabledContext.tsx'
+import { useToken } from '../theme/internal'
+import useStyle from './style'
+
+export type SwitcherIcon = any | ((props: AntTreeNodeProps) => any)
+export type TreeLeafIcon = any | ((props: AntTreeNodeProps) => any)
+type TreeIcon = any | ((props: AntdTreeNodeAttribute) => any)
+
+export interface AntdTreeNodeAttribute {
+  eventKey: string
+  prefixCls: string
+  className: string
+  expanded: boolean
+  selected: boolean
+  checked: boolean
+  halfChecked: boolean
+  title: VueNode
+  children: VueNode
+  pos: string
+  dragOver: boolean
+  dragOverGapTop: boolean
+  dragOverGapBottom: boolean
+  isLeaf: boolean
+  selectable: boolean
+  disabled: boolean
+  disableCheckbox: boolean
+}
+
+export interface AntTreeNodeProps {
+  className?: string
+  checkable?: boolean
+  disabled?: boolean
+  disableCheckbox?: boolean
+  title?: any | ((data: DataNode) => any)
+  key?: Key
+  eventKey?: Key
+  isLeaf?: boolean
+  checked?: boolean
+  expanded?: boolean
+  loading?: boolean
+  selected?: boolean
+  selectable?: boolean
+  icon?: TreeIcon
+  children?: VueNode
+  [customProp: string]: any
+}
+
+export type AntTreeNode = AntTreeNodeProps
+
+export interface AntTreeNodeBaseEvent {
+  node: any
+  nativeEvent: MouseEvent
+}
+
+export interface AntTreeNodeCheckedEvent extends AntTreeNodeBaseEvent {
+  event: 'check'
+  checked?: boolean
+  checkedNodes?: AntTreeNode[]
+}
+
+export interface AntTreeNodeSelectedEvent extends AntTreeNodeBaseEvent {
+  event: 'select'
+  selected?: boolean
+  selectedNodes?: DataNode[]
+}
+
+export interface AntTreeNodeExpandedEvent extends AntTreeNodeBaseEvent {
+  expanded?: boolean
+}
+
+export interface AntTreeNodeMouseEvent {
+  node: AntTreeNode
+  event: (e: DragEvent) => void
+}
+
+export interface AntTreeNodeDragEnterEvent extends AntTreeNodeMouseEvent {
+  expandedKeys: Key[]
+}
+
+export interface AntTreeNodeDropEvent {
+  node: AntTreeNode
+  dragNode: AntTreeNode
+  dragNodesKeys: Key[]
+  dropPosition: number
+  dropToGap?: boolean
+  event: (e: MouseEvent) => void
+}
+
+// [Legacy] Compatible for v3
+export type TreeNodeNormal = DataNode
+type DraggableFn = (node: DataNode) => boolean
+
+interface DraggableConfig {
+  icon?: VueNode
+  nodeDraggable?: DraggableFn
+}
+
+export type TreeSemanticName = 'root' | 'item' | 'itemIcon' | 'itemTitle'
+export type TreeClassNamesType = SemanticClassNamesType<TreeProps, TreeSemanticName>
+export type TreeStylesType = SemanticStylesType<TreeProps, TreeSemanticName>
+
+export interface TreeProps<T extends BasicDataNode = DataNode>
+  extends Omit<
+    VcTreeProps<T>,
+    | 'prefixCls'
+    | 'showLine'
+    | 'direction'
+    | 'draggable'
+    | 'className'
+    | 'icon'
+    | 'switcherIcon'
+    | 'classNames'
+    | 'rootClassName'
+    | 'styles'
+    | 'onCheck'
+    | 'onClick'
+    | 'onBlur'
+    | 'onDrop'
+    | 'onLoad'
+    | 'onActiveChange'
+    | 'onContextMenu'
+    | 'onDoubleClick'
+    | 'onExpand'
+    | 'onKeyDown'
+    | 'onDragEnd'
+    | 'onDragOver'
+    | 'onDragStart'
+    | 'onDragLeave'
+    | 'onDragEnter'
+  > {
+  rootClass?: string
+  showLine?: boolean | { showLeafIcon: boolean | TreeLeafIcon }
+  classes?: TreeClassNamesType
+  styles?: TreeStylesType
+
+  /** Whether to support multiple selection */
+  multiple?: boolean
+  /** Whether to automatically expand the parent node */
+  autoExpandParent?: boolean
+  /** Node selection in Checkable state is fully controlled (the selected state of parent and child nodes is no longer associated) */
+  checkStrictly?: boolean
+  /** Whether to support selection */
+  checkable?: boolean
+  /** whether to disable the tree */
+  disabled?: boolean
+  /** Expand all tree nodes by default */
+  defaultExpandAll?: boolean
+  /** Expand the corresponding tree node by default */
+  defaultExpandParent?: boolean
+  /** Expand the specified tree node by default */
+  defaultExpandedKeys?: Key[]
+  /** (Controlled) Expand the specified tree node */
+  expandedKeys?: Key[]
+  /** (Controlled) Tree node with checked checkbox */
+  checkedKeys?: Key[] | { checked: Key[], halfChecked: Key[] }
+  /** Tree node with checkbox checked by default */
+  defaultCheckedKeys?: Key[]
+  /** (Controlled) Set the selected tree node */
+  selectedKeys?: Key[]
+  /** Tree node selected by default */
+  defaultSelectedKeys?: Key[]
+  selectable?: boolean
+  /** Click on the tree node to trigger */
+  filterAntTreeNode?: (node: AntTreeNode) => boolean
+  loadedKeys?: Key[]
+  /** Set the node to be draggable (IE>8) */
+  draggable?: DraggableFn | boolean | DraggableConfig
+
+  showIcon?: boolean
+  icon?: TreeIcon
+  switcherIcon?: SwitcherIcon
+  switcherLoadingIcon?: VueNode
+  prefixCls?: string
+  blockNode?: boolean
+}
+
+export interface TreeEmits {
+  'click': NonNullable<VcTreeProps['onClick']>
+  'check': NonNullable<VcTreeProps['onCheck']>
+  'expand': NonNullable<VcTreeProps['onExpand']>
+  'select': NonNullable<VcTreeProps['onSelect']>
+  'dblclick': NonNullable<VcTreeProps['onDoubleClick']>
+  'doubleClick': NonNullable<VcTreeProps['onDoubleClick']>
+  'contextmenu': NonNullable<VcTreeProps['onContextMenu']>
+  'dragstart': NonNullable<VcTreeProps['onDragStart']>
+  'dragenter': NonNullable<VcTreeProps['onDragEnter']>
+  'dragover': NonNullable<VcTreeProps['onDragOver']>
+  'dragleave': NonNullable<VcTreeProps['onDragLeave']>
+  'drop': NonNullable<VcTreeProps['onDrop']>
+  'dragend': NonNullable<VcTreeProps['onDragEnd']>
+  'load': NonNullable<VcTreeProps['onLoad']>
+  'activeChange': NonNullable<VcTreeProps['onActiveChange']>
+  'update:expandedKeys': (keys: Key[]) => void
+  'update:checkedKeys': (keys: Key[] | { checked: Key[], halfChecked: Key[] }) => void
+  'update:selectedKeys': (keys: Key[]) => void
+  [key: string]: (...args: any) => void
+}
+
+export interface TreeSlots {
+  switcherLoadingIcon: () => any
+  default: () => any
+  draggableIcon: () => any
+  icon: (props: AntdTreeNodeAttribute) => any
+}
+
+const defaults = {
+  showIcon: false,
+  blockNode: false,
+  checkable: false,
+  selectable: true,
+} as any
+
+const Tree = defineComponent<
+  TreeProps,
+  TreeEmits,
+  string,
+  SlotsType<TreeSlots>
+>(
+  (props = defaults, { slots, emit, expose, attrs }) => {
+    const {
+      virtual,
+      prefixCls,
+      rootPrefixCls,
+      direction,
+      class: contextClassName,
+      style: contextStyle,
+      classes: contextClassNames,
+      styles: contextStyles,
+    } = useComponentBaseConfig('tree', props)
+    const { classes, styles, motion: customMotion } = toPropsRefs(props, 'classes', 'styles', 'motion')
+    const contextDisabled = useDisabledContext()
+    const mergedDisabled = computed(() => props?.disabled ?? contextDisabled.value)
+    const motion = computed(() => customMotion.value ?? {
+      ...initCollapseMotion(rootPrefixCls.value),
+      appear: false,
+    })
+
+    // =========== Merged Props for Semantic ==========
+    const mergedProps = computed(() => {
+      return {
+        ...props,
+        disabled: mergedDisabled.value,
+        motion: motion.value,
+      } as TreeProps
+    })
+
+    const [mergedClassNames, mergedStyles] = useMergeSemantic<
+      TreeClassNamesType,
+      TreeStylesType,
+      TreeProps
+    >(useToArr(contextClassNames, classes), useToArr(contextStyles, styles), useToProps(mergedProps))
+    const [hashId, cssVarCls] = useStyle(prefixCls)
+    const [, token] = useToken()
+    return () => {
+      return null
+    }
+  },
+  {
+    name: 'ATree',
+    inheritAttrs: false,
+  },
+)
+
+export default Tree

@@ -37,6 +37,7 @@
     "@v-c/textarea": "^1.0.0",
     "@v-c/tooltip": "^1.0.1",
     "@v-c/tour": "^1.0.1",
+    "@v-c/tree": "link:/Users/zhuzhengjian/workspace/gitea/antdv-next/vue-components/packages/tree",
     "@v-c/trigger": "^1.0.2",
     "@v-c/util": "catalog:",
     "@v-c/virtual-list": "^1.0.3",
