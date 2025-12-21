@@ -255,8 +255,8 @@ importers:
         specifier: ^0.0.2
         version: 0.0.2(vue@3.5.25(typescript@5.9.3))
       '@v-c/pagination':
-        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/pagination
-        version: link:../../../../../github/antdv-next/vue-components/packages/pagination
+        specifier: ^0.0.1
+        version: 0.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/progress':
         specifier: ^0.0.2
         version: 0.0.2(vue@3.5.25(typescript@5.9.3))
@@ -306,8 +306,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(vue@3.5.25(typescript@5.9.3))
       '@v-c/upload':
-        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/upload
-        version: link:../../../../../github/antdv-next/vue-components/packages/upload
+        specifier: ^0.0.1
+        version: 0.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/util':
         specifier: ^1.0.4
         version: 1.0.4(vue@3.5.25(typescript@5.9.3))
@@ -1698,6 +1698,11 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
+  '@v-c/pagination@0.0.1':
+    resolution: {integrity: sha512-TLa28Ak5n8bJJpoDCRq6R9Dv9DImSlK5jjc/mp+i5/4xrAtbujE4Su037bPLQQyd1a8l4mSm2X8qxRCKiZBnWQ==}
+    peerDependencies:
+      vue: ^3.0.0
+
   '@v-c/portal@1.0.1':
     resolution: {integrity: sha512-XeFjEo8GF3e4GRDJbo5Loo62o1g+VwumZ4l/cnnmgtcLFPsPdxw0tLh0s/skPzAcObDQGffR/cGhi2KiveB+ig==}
     peerDependencies:
@@ -1783,6 +1788,11 @@ packages:
 
   '@v-c/trigger@1.0.2':
     resolution: {integrity: sha512-Y45BTpDa0k0o3ut0lTpRcpzOJlw2UupBf53CbrrFR7qI/+7qgbVYH1UEkobZF64+j7TixfFnQ5ApE8yPJZtvEA==}
+    peerDependencies:
+      vue: ^3.0.0
+
+  '@v-c/upload@0.0.1':
+    resolution: {integrity: sha512-5strvyKp0+atoOxyVDattsKuVPT0dz+rrjzeNUgEIMBoDai1V+wcTYK9C22NWYjXLvkXkoWezuuW5DXLJZ0rwA==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -5397,6 +5407,11 @@ snapshots:
       '@v-c/util': 1.0.4(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
 
+  '@v-c/pagination@0.0.1(vue@3.5.25(typescript@5.9.3))':
+    dependencies:
+      '@v-c/util': 1.0.4(vue@3.5.25(typescript@5.9.3))
+      vue: 3.5.25(typescript@5.9.3)
+
   '@v-c/portal@1.0.1(vue@3.5.25(typescript@5.9.3))':
     dependencies:
       '@v-c/util': 1.0.4(vue@3.5.25(typescript@5.9.3))
@@ -5511,6 +5526,11 @@ snapshots:
     dependencies:
       '@v-c/portal': 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/resize-observer': 1.0.3(vue@3.5.25(typescript@5.9.3))
+      '@v-c/util': 1.0.4(vue@3.5.25(typescript@5.9.3))
+      vue: 3.5.25(typescript@5.9.3)
+
+  '@v-c/upload@0.0.1(vue@3.5.25(typescript@5.9.3))':
+    dependencies:
       '@v-c/util': 1.0.4(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
 
