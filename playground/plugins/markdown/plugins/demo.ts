@@ -1,4 +1,4 @@
-import type { MarkdownItEnv } from '@mdit-vue/types'
+import type { MarkdownItEnv, MarkdownItHeader } from '@mdit-vue/types'
 import type MarkdownIt from 'markdown-it'
 import pathe from 'pathe'
 
@@ -14,10 +14,11 @@ function checkWrapper(content: string, wrapper = 'demo'): boolean {
   return REGEX_CHECK.test(content)
 }
 
-function replaceSrcPath(content: string, id: string, root: string, wrapper = 'demo') {
-  const REGEX_TAG = new RegExp(`(<${wrapper}\\b[^>]*>)`, 'gi')
-
-  return content.replace(REGEX_TAG, (tagMatch) => {
+export function replaceSrcPath(content: string, id: string, root: string, wrapper = 'demo', whenToUse?: MarkdownItHeader) {
+  // const REGEX_TAG = new RegExp(`(<${wrapper}\\b[^>]*>)([\\s\\S]*?)<\\/${wrapper}>`, 'gi')
+  const REGEX_TAG = new RegExp(`(<${wrapper}(?!-)\\b[^>]*>)([\\s\\S]*?)<\\/${wrapper}>`, 'gi')
+  return content.replace(REGEX_TAG, (tagMatch, _, titleContent) => {
+    // console.log('tagMatch', tagMatch)
     return tagMatch.replace(/(\s|^)src=(['"])(.*?)\2/gi, (srcMatch, prefix, quote, srcValue) => {
       if (!srcValue)
         return srcMatch
@@ -26,6 +27,26 @@ function replaceSrcPath(content: string, id: string, root: string, wrapper = 'de
       const filePath = pathe.resolve(dir, srcValue)
       const relative = pathe.relative(root, filePath)
       const newSrc = relative.startsWith('/') ? relative : `/${relative}`
+      // 如果存在 when-to-use，则在路径后添加查询参数
+      if (whenToUse) {
+        const slug = relative.replace(/\//g, '-').replace('.vue', '')
+        const title = titleContent
+        const level = whenToUse.level + 1
+        const link = `#${slug}`
+        const item = {
+          level,
+          title,
+          slug,
+          link,
+          children: [],
+        }
+        if (whenToUse.children) {
+          whenToUse.children.push(item)
+        }
+        else {
+          whenToUse.children = [item]
+        }
+      }
 
       return `${prefix}src=${quote}${newSrc}${quote}`
     })
@@ -39,18 +60,19 @@ export function demoPlugin(md: MarkdownIt, config: { root?: string } = {}) {
   md.renderer.render = function (tokens, options, env: MarkdownItEnv) {
     const root = config.root ?? process.cwd()
     const currentId = env.id || ''
-
+    const headers = env.headers
+    const whenToUse = headers?.find(item => item.slug === 'examples')
     // 遍历所有 token
     for (const token of tokens) {
       // 1. 处理块级 HTML (html_block)
       if (token.type === 'html_block' && checkWrapper(token.content)) {
-        token.content = replaceSrcPath(token.content, currentId, root)
+        token.content = replaceSrcPath(token.content, currentId, root, undefined, whenToUse)
       }
 
       else if (token.type === 'inline' && token.children) {
         for (const child of token.children) {
           if (child.type === 'html_inline' && checkWrapper(child.content)) {
-            child.content = replaceSrcPath(child.content, currentId, root)
+            child.content = replaceSrcPath(child.content, currentId, root, undefined, whenToUse)
           }
         }
       }

@@ -6,7 +6,7 @@ description: 按钮用于开始一个即时操作。
 
 <DocHeading :frontmatter></DocHeading>
 
-## 何时使用 {#how-to-use}
+## 何时使用 {#when-to-use}
 
 标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。
 
@@ -26,7 +26,7 @@ description: 按钮用于开始一个即时操作。
 - 🔃 加载中：用于异步操作等待反馈的时候，也可以避免多次提交。
 
 
-## 代码演示
+## 代码演示 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">语法糖</demo>

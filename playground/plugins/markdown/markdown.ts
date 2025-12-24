@@ -82,6 +82,10 @@ export function loadBaseMd(md: MarkdownItAsync) {
 }
 
 function withPlugins(md: MarkdownItAsync, options: CreateMarkdownOptions) {
+  // 处理demo
+  md.use(demoPlugin, {
+    root: options.root,
+  })
   // 加载基础markdown配置
   loadBaseMd(md)
   // 目录插件
@@ -114,10 +118,7 @@ function withPlugins(md: MarkdownItAsync, options: CreateMarkdownOptions) {
   md.use(preWrapperPlugin, {
     hasSingleTheme: false, // 是否只有一个主题
   })
-  // 处理demo
-  md.use(demoPlugin, {
-    root: options.root,
-  })
+
   // 禁用markdown自动识别链接
   md.linkify.set({ fuzzyLink: false })
 }
