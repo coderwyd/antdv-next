@@ -35,6 +35,7 @@ const handleChangeMenu: MenuEmits['click'] = (info) => {
       <a-menu
         class="ant-doc-main-sider-menu"
         :items="siderMenus"
+        mode="inline"
         :selected-keys="siderKey"
         :open-keys="siderOpenKeys"
         @click="handleChangeMenu"
@@ -72,6 +73,16 @@ const handleChangeMenu: MenuEmits['click'] = (info) => {
       padding-top: 0;
       padding-bottom: var(--ant-margin-xxl) !important;
       padding-inline: var(--ant-margin-xxs);
+
+      //.ant-menu-inline > .ant-menu-item-group > .ant-menu-item-group-title::after {
+      //  position: relative;
+      //  top: 12px;
+      //  display: block;
+      //  width: calc(100% - 20px);
+      //  height: 1px;
+      //  background: var(--ant-color-split);
+      //  content: '';
+      //}
     }
     &-anchor {
       scrollbar-width: thin;
