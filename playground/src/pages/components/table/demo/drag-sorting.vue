@@ -31,7 +31,7 @@ const columns: TableProps['columns'] = [
 
 const dragKey = ref<string | null>(null)
 
-const onRow: TableProps<DataType>['onRow'] = record => ({
+const onRow: TableProps['onRow'] = record => ({
   draggable: true,
   onDragstart: () => {
     dragKey.value = record.key

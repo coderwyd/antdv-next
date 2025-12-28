@@ -23,7 +23,7 @@ const dataSource = ref<DataType[]>([
   { key: '3', name: 'Joe Black', age: 32, address: 'Sydney No. 1 Lake Park' },
 ])
 
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps['columns'] = [
   { title: '', key: 'sort', width: 48 },
   { title: 'Name', dataIndex: 'name', key: 'name' },
   { title: 'Age', dataIndex: 'age', key: 'age' },
@@ -32,12 +32,12 @@ const columns: TableProps<DataType>['columns'] = [
 
 const dragKey = ref<string | null>(null)
 
-function onHandleDragStart(record: DataType, event: DragEvent) {
+function onHandleDragStart(record: any, event: DragEvent) {
   dragKey.value = record.key
   event.dataTransfer?.setData('text/plain', record.key)
 }
 
-const onRow: TableProps<DataType>['onRow'] = (record) => ({
+const onRow: TableProps['onRow'] = record => ({
   onDragover: (event: DragEvent) => {
     event.preventDefault()
   },
@@ -52,7 +52,7 @@ const onRow: TableProps<DataType>['onRow'] = (record) => ({
       return
     }
     const [moved] = current.splice(fromIndex, 1)
-    current.splice(toIndex, 0, moved)
+    current.splice(toIndex, 0, moved!)
     dataSource.value = current
     dragKey.value = null
   },
@@ -63,7 +63,7 @@ const onRow: TableProps<DataType>['onRow'] = (record) => ({
   <a-table :columns="columns" :data-source="dataSource" :on-row="onRow">
     <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'sort'">
-        <span class="drag-handle" draggable="true" @dragstart="onHandleDragStart(record, $event)">::</span>
+        <span class="drag-handle color-text-tertiary" draggable="true" @dragstart="onHandleDragStart(record, $event)">::</span>
       </template>
     </template>
   </a-table>
@@ -72,7 +72,6 @@ const onRow: TableProps<DataType>['onRow'] = (record) => ({
 <style scoped>
 .drag-handle {
   cursor: grab;
-  color: var(--ant-color-text-tertiary);
   display: inline-flex;
   align-items: center;
   justify-content: center;

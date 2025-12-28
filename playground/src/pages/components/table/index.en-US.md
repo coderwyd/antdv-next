@@ -28,7 +28,6 @@ A table displays data in rows and columns.
   <demo src="./demo/multiple-sorter.vue">Multiple Sorter</demo>
   <demo src="./demo/order-column.vue">Order Columns</demo>
   <demo src="./demo/hidden-columns.vue">Hidden Columns</demo>
-  <demo src="./demo/drag-column-sorting.vue">Drag Column Sorting</demo>
   <demo src="./demo/drag-sorting.vue">Drag Row Sorting</demo>
   <demo src="./demo/drag-sorting-handler.vue">Drag Handle Sorting</demo>
   <demo src="./demo/resizable-column.vue">Resizable Column</demo>

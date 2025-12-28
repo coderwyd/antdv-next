@@ -35,7 +35,7 @@ const yScroll = ref(false)
 const xScroll = ref(false)
 const size = ref<TableProps<DataType>['size']>('middle')
 
-const columns = computed<TableProps<DataType>['columns']>(() => [
+const columns = computed<TableProps['columns']>(() => [
   { title: 'Name', dataIndex: 'name', key: 'name' },
   { title: 'Age', dataIndex: 'age', key: 'age', sorter: (a, b) => a.age - b.age },
   { title: 'Address', dataIndex: 'address', key: 'address' },
@@ -52,7 +52,7 @@ const scroll = computed(() => {
   return next
 })
 
-const rowSelection = computed<TableProps<DataType>['rowSelection']>(() => (enableSelection.value ? {} : undefined))
+const rowSelection = computed<TableProps['rowSelection']>(() => (enableSelection.value ? {} : undefined))
 </script>
 
 <template>

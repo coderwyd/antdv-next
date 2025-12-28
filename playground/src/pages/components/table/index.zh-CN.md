@@ -28,7 +28,6 @@
   <demo src="./demo/multiple-sorter.vue">多列排序</demo>
   <demo src="./demo/order-column.vue">列顺序</demo>
   <demo src="./demo/hidden-columns.vue">隐藏列</demo>
-  <demo src="./demo/drag-column-sorting.vue">拖动列顺序</demo>
   <demo src="./demo/drag-sorting.vue">拖动行排序</demo>
   <demo src="./demo/drag-sorting-handler.vue">拖动手柄排序</demo>
   <demo src="./demo/resizable-column.vue">调整列宽</demo>
