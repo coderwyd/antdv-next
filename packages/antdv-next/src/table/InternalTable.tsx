@@ -12,7 +12,6 @@ import type { SortState } from './hooks/useSorter'
 import type {
   ColumnsType,
   ColumnType,
-  ExpandType,
   FilterDropdownProps,
   FilterValue,
   GetPopupContainer,
@@ -160,6 +159,7 @@ export interface TableSlots<RecordType = AnyObject> {
   summary?: (data: readonly RecordType[]) => any
   emptyText?: () => any
   expandIcon?: (info: any) => any
+  expandedRowRender?: (ctx: { record: RecordType, index: number, indent: number, expanded: boolean }) => any
   headerCell?: (ctx: { column: ColumnType<RecordType>, index: number, text: any }) => any
   bodyCell?: (ctx: { column: ColumnType<RecordType>, index: number, text: any, record: RecordType }) => any
   filterDropdown?: (ctx: FilterDropdownProps & { column: ColumnType<RecordType> }) => any
@@ -303,36 +303,6 @@ const InternalTable = defineComponent<
     })
 
     const childrenColumnName = computed(() => mergedExpandable.value.childrenColumnName || 'children')
-
-    const expandType = computed<ExpandType>(() => {
-      if (rawData.value.some(item => item?.[childrenColumnName.value])) {
-        return 'nest'
-      }
-      if (props.expandedRowRender || mergedExpandable.value.expandedRowRender) {
-        return 'row'
-      }
-      return null
-    })
-
-    const mergedExpandableConfig = computed(() => {
-      const expandable = { ...mergedExpandable.value }
-      ;(expandable as any).__PARENT_RENDER_ICON__ = expandable.expandIcon
-
-      expandable.expandIcon = expandable.expandIcon || renderExpandIcon(mergedLocale.value)
-
-      if (expandType.value === 'nest' && expandable.expandIconColumnIndex === undefined) {
-        expandable.expandIconColumnIndex = props.rowSelection ? 1 : 0
-      }
-      else if (expandType.value === 'nest' && expandable.expandIconColumnIndex! > 0 && props.rowSelection) {
-        expandable.expandIconColumnIndex! -= 1
-      }
-
-      if (typeof expandable.indentSize !== 'number') {
-        expandable.indentSize = typeof props.indentSize === 'number' ? props.indentSize : 15
-      }
-
-      return expandable
-    })
 
     const getRowKey = computed(() => {
       if (typeof props.rowKey === 'function') {
@@ -513,7 +483,6 @@ const InternalTable = defineComponent<
         pageData,
         getRowKey,
         getRecordByKey,
-        expandType,
         childrenColumnName,
         locale: mergedLocale,
         getPopupContainer: computed(() => props.getPopupContainer || contextGetPopupContainer),
@@ -580,6 +549,15 @@ const InternalTable = defineComponent<
         getSlotPropsFnRun(slots, props as any, 'headerCell', true, ctx)
       const renderBodyCell = (ctx: { column: ColumnType, index: number, text: any, record: any }) =>
         getSlotPropsFnRun(slots, props as any, 'bodyCell', true, ctx)
+      const renderExpandedRow = slots.expandedRowRender
+        ? (record: AnyObject, index: number, indent: number, expanded: boolean) =>
+            getSlotPropsFnRun(slots, props as any, 'expandedRowRender', true, {
+              record,
+              index,
+              indent,
+              expanded,
+            })
+        : undefined
       const { locale } = props
       const mergedEmptyNodeFn = () => {
         if (spinProps.value?.spinning && rawData.value === EMPTY_LIST) {
@@ -623,6 +601,38 @@ const InternalTable = defineComponent<
             ),
           ),
         )
+      const expandType = (() => {
+        if (rawData.value.some(item => item?.[childrenColumnName.value])) {
+          return 'nest'
+        }
+        if (renderExpandedRow || mergedExpandable.value.expandedRowRender) {
+          return 'row'
+        }
+        return null
+      })()
+      const mergedExpandableConfig = (() => {
+        const expandable = { ...mergedExpandable.value }
+        ;(expandable as any).__PARENT_RENDER_ICON__ = expandable.expandIcon
+
+        if (renderExpandedRow) {
+          expandable.expandedRowRender = renderExpandedRow as any
+        }
+
+        expandable.expandIcon = expandable.expandIcon || renderExpandIcon(mergedLocale.value)
+
+        if (expandType === 'nest' && expandable.expandIconColumnIndex === undefined) {
+          expandable.expandIconColumnIndex = props.rowSelection ? 1 : 0
+        }
+        else if (expandType === 'nest' && expandable.expandIconColumnIndex! > 0 && props.rowSelection) {
+          expandable.expandIconColumnIndex! -= 1
+        }
+
+        if (typeof expandable.indentSize !== 'number') {
+          expandable.indentSize = typeof props.indentSize === 'number' ? props.indentSize : 15
+        }
+
+        return expandable
+      })()
       const renderPagination = (placement: 'start' | 'end' | 'center' = 'end') => (
         <Pagination
           {...mergedPagination.value as any}
@@ -733,7 +743,7 @@ const InternalTable = defineComponent<
               emptyText={mergedEmptyNode as any}
               classNames={mergedClassNames.value as any}
               styles={mergedStyles.value as any}
-              expandable={mergedExpandableConfig.value}
+              expandable={mergedExpandableConfig}
               prefixCls={prefixCls.value}
               direction={props.direction ?? direction.value}
               headerCell={slots.headerCell || props.headerCell ? renderHeaderCell : undefined}

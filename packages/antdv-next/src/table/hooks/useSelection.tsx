@@ -5,7 +5,6 @@ import type { AnyObject } from '../../_util/type.ts'
 import type {
   ColumnsType,
   ColumnType,
-  ExpandType,
   GetPopupContainer,
   GetRowKey,
   Key,
@@ -41,7 +40,6 @@ interface UseSelectionConfig<RecordType = AnyObject> {
   data: MaybeRef<RecordType[]>
   getRowKey: MaybeRef<GetRowKey<RecordType>>
   getRecordByKey: (key: Key) => RecordType
-  expandType: MaybeRef<ExpandType>
   childrenColumnName: MaybeRef<string>
   locale: MaybeRef<TableLocale>
   getPopupContainer?: MaybeRef<GetPopupContainer | undefined>
@@ -84,10 +82,12 @@ export default function useSelection<RecordType extends AnyObject = AnyObject>(
   const pageData = computed(() => unref(config.pageData))
   const getRecordByKey = config.getRecordByKey
   const getRowKey = computed(() => unref(config.getRowKey))
-  const expandType = computed(() => unref(config.expandType))
   const childrenColumnName = computed(() => unref(config.childrenColumnName))
   const tableLocale = computed(() => unref(config.locale))
   const getPopupContainer = computed(() => unref(config.getPopupContainer))
+  const isTreeData = computed(() =>
+    (data.value || []).some(item => item?.[childrenColumnName.value]),
+  )
 
   const [multipleSelect, updatePrevSelectedIndex] = useMultipleSelect<Key, Key>(item => item)
 
@@ -498,7 +498,7 @@ export default function useSelection<RecordType extends AnyObject = AnyObject>(
         const indeterminate = derivedHalfSelectedKeySet.value.has(key)
         const checkboxProps = checkboxPropsMap.value.get(key)
         let mergedIndeterminate: boolean
-        if (expandType.value === 'nest') {
+        if (isTreeData.value) {
           mergedIndeterminate = indeterminate
           warning(
             typeof (checkboxProps as any)?.indeterminate !== 'boolean',
