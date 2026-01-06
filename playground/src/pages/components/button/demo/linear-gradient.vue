@@ -1,9 +1,9 @@
 <docs lang="zh-CN">
-通过 ConfigProvider 设置 `button.className` 可以添加自定义样式,这里展示了如何为按钮添加渐变色效果。
+通过 ConfigProvider 设置 `button.classes` 可以添加自定义样式,这里展示了如何为按钮添加渐变色效果。
 </docs>
 
 <docs lang="en-US">
-You can add custom styles by setting `button.className` in ConfigProvider. This example shows how to add a gradient effect to buttons.
+You can add custom styles by setting `button.classes` in ConfigProvider. This example shows how to add a gradient effect to buttons.
 </docs>
 
 <script setup lang="ts">
