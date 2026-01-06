@@ -1,3 +1,5 @@
+import { definePreset } from '@unocss/core'
+
 function generatePalette(name: ColorName, antPrefix: string = 'ant') {
   const palette: Record<string, string> = {}
   // 基础色 (e.g. a-text-blue) -> 对应 AntD 默认的主色(通常是6)
@@ -49,7 +51,7 @@ export interface AntdPresetOptions {
   antPrefix?: string
 }
 
-export function presetAntd(options: AntdPresetOptions = {}) {
+export const presetAntd = definePreset((options: AntdPresetOptions = {}) => {
   const prefix = options.prefix || 'a'
   const antPrefix = options.antPrefix || 'ant'
 
@@ -411,6 +413,6 @@ export function presetAntd(options: AntdPresetOptions = {}) {
       ],
     },
   }
-}
+})
 
 export default presetAntd
