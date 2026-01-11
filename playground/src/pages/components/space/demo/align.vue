@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+设置对齐模式。
+</docs>
+
+<docs lang="en-US">
+Set alignment.
+</docs>
+
 <script setup lang="ts"></script>
 
 <template>

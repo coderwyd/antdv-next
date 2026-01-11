@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+相邻组件垂直间距。
+</docs>
+
+<docs lang="en-US">
+Vertical spacing between adjacent components.
+</docs>
+
 <script setup lang="ts"></script>
 
 <template>

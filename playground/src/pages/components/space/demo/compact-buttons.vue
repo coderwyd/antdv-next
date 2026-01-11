@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+紧凑按钮组。
+</docs>
+
+<docs lang="en-US">
+Compact button group.
+</docs>
+
 <script setup lang="ts">
 import {
   CommentOutlined,

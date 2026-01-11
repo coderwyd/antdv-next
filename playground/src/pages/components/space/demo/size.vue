@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+自定义间距大小。
+</docs>
+
+<docs lang="en-US">
+Customize space size.
+</docs>
+
 <script setup lang="ts">
 import type { SizeType } from 'antdv-next'
 import { ref } from 'vue'

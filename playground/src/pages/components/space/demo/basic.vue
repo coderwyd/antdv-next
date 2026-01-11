@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+相邻组件水平间距。
+</docs>
+
+<docs lang="en-US">
+Horizontal spacing between adjacent components.
+</docs>
+
 <script setup lang="ts">
 import { UploadOutlined } from '@antdv-next/icons'
 </script>

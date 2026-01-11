@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+自动换行。
+</docs>
+
+<docs lang="en-US">
+Auto wrap.
+</docs>
+
 <script setup lang="ts"></script>
 
 <template>

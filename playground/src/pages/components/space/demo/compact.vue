@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+紧凑布局组件，适合用于输入框、选择器等组件的组合。
+</docs>
+
+<docs lang="en-US">
+Compact layout component, suitable for combining input boxes, selectors and other components.
+</docs>
+
 <script setup lang="ts">
 import { CopyOutlined } from '@antdv-next/icons'
 import { ref } from 'vue'

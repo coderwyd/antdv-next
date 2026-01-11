@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+相邻组件分隔符。
+</docs>
+
+<docs lang="en-US">
+Separator between adjacent components.
+</docs>
+
 <script setup lang="ts"></script>
 
 <template>

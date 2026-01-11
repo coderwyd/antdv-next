@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+垂直紧凑按钮组。
+</docs>
+
+<docs lang="en-US">
+Vertical compact button group.
+</docs>
+
 <script setup lang="ts"></script>
 
 <template>
