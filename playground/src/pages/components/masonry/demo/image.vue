@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+使用瀑布流展示图片列表。
+</docs>
+
+<docs lang="en-US">
+Display image list using masonry layout.
+</docs>
+
 <script setup lang="ts">
 const imageList = [
   'https://images.unsplash.com/photo-1510001618818-4b4e3d86bf0f',

@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过设置 `columns` 和 `gutter` 属性为响应式配置对象，实现不同屏幕尺寸下的瀑布流布局。
+</docs>
+
+<docs lang="en-US">
+Achieve responsive masonry layout for different screen sizes by setting `columns` and `gutter` properties to responsive configuration objects.
+</docs>
+
 <script setup lang="ts">
 const heights = [120, 55, 85, 160, 95, 140, 75, 110, 65, 130, 90, 145, 55, 100, 80]
 

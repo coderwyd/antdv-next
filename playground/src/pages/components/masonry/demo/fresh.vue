@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+开启 `fresh` 属性后，瀑布流会持续监听子项的尺寸变化并自动重新布局。点击卡片可以改变其高度。
+</docs>
+
+<docs lang="en-US">
+When `fresh` is enabled, the masonry will continuously monitor size changes of child items and automatically re-layout. Click on cards to change their height.
+</docs>
+
 <script setup lang="ts">
 import { Card } from 'antdv-next'
 import { defineComponent, h, ref } from 'vue'
