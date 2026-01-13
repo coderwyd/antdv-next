@@ -6,10 +6,11 @@ import Unocss from 'unocss/vite'
 import { defineConfig } from 'vite'
 import dayjsPlugin from 'vite-plugin-dayjs'
 import inspect from 'vite-plugin-inspect'
-
 import { tsxResolveTypes } from 'vite-plugin-tsx-resolve-types'
+
 import { mdPlugin } from './plugins/markdown'
 import { postcssIsolateStyles } from './plugins/markdown/isolateStyles.ts'
+import prefetch from './plugins/prefetch'
 
 const baseUrl = fileURLToPath(new URL('.', import.meta.url))
 // https://vite.dev/config/
@@ -26,6 +27,7 @@ export default defineConfig({
     }),
     inspect(),
     Unocss(),
+    prefetch(),
   ],
   server: {
     port: 3322,
