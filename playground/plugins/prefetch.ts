@@ -46,6 +46,8 @@ function prefetch(config: PrefetchConfig = { concurrency: 2 }): Plugin {
       // Minified-ish runtime code
       const code = `
 (function() {
+  // check in iframe
+  if (self !== top) return;
   const resources = ${resourcesBytes};
   const concurrency = ${config.concurrency || 2};
   const queue = [...resources.js.map(url => ({ url, type: 'script' })), ...resources.css.map(url => ({ url, type: 'style' }))];
