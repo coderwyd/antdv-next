@@ -1,6 +1,13 @@
+<docs lang="zh-CN">
+标签居中展示。
+</docs>
+
+<docs lang="en-US">
+Centered tabs.
+</docs>
+
 <script setup lang="ts">
 import type { TabsProps } from 'antdv-next'
-import { ref } from 'vue'
 
 const items: TabsProps['items'] = Array.from({ length: 3 }).map((_, i) => {
   const id = String(i + 1)
@@ -10,9 +17,8 @@ const items: TabsProps['items'] = Array.from({ length: 3 }).map((_, i) => {
     content: `Content of Tab Pane ${id}`,
   }
 })
-const activeKey = ref('1')
 </script>
 
 <template>
-  <a-tabs v-model:active-key="activeKey" centered :items="items" />
+  <a-tabs centered :items="items" />
 </template>

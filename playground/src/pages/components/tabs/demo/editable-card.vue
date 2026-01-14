@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+只有卡片样式的页签支持新增和关闭选项。使用 `closable={false}` 禁止关闭。
+</docs>
+
+<docs lang="en-US">
+Only card type Tabs support adding & closable. Use `closable={false}` to disable close.
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 

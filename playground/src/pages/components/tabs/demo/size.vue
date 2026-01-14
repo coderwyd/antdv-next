@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+大号页签用在页头区域，小号用在弹出框等较狭窄的容器内。
+</docs>
+
+<docs lang="en-US">
+Large size tabs are usually used in page header, and small size could be used in Modal.
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -65,8 +73,6 @@ function onEdit(targetKey: string | MouseEvent | KeyboardEvent, action: 'add' | 
     remove(targetKey)
   }
 }
-const activeKey1 = ref('1')
-const activeKey2 = ref('1')
 </script>
 
 <template>
@@ -83,13 +89,13 @@ const activeKey2 = ref('1')
       </a-radio-button>
     </a-radio-group>
     <a-tabs
-      v-model:active-key="activeKey1"
+      default-active-key="1"
       :size="size"
       style="margin-bottom: 32px;"
       :items="staticItems"
     />
     <a-tabs
-      v-model:active-key="activeKey2"
+      default-active-key="1"
       type="card"
       :size="size"
       style="margin-bottom: 32px;"

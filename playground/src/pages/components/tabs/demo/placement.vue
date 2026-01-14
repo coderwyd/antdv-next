@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+有四个位置，`tabPlacement="start|end|top|bottom"`。在移动端下，`start|end` 会自动切换成 `top`。
+</docs>
+
+<docs lang="en-US">
+Tab's placement: start, end, top or bottom. Will auto switch to `top` in mobile.
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -19,8 +27,6 @@ const items: TabItem[] = Array.from({ length: 3 }).map((_, i) => {
     content: `Content of Tab ${id}`,
   }
 })
-
-const activeKey = ref('1')
 </script>
 
 <template>
@@ -41,5 +47,5 @@ const activeKey = ref('1')
       </a-radio-button>
     </a-radio-group>
   </a-space>
-  <a-tabs v-model:active-key="activeKey" :tab-placement="tabPlacement" :items="items" />
+  <a-tabs :tab-placement="tabPlacement" :items="items" />
 </template>

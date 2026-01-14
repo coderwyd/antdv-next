@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+可以左右、上下滑动，容纳更多标签。
+</docs>
+
+<docs lang="en-US">
+In order to fit in more tabs, they can slide left and right (or up and down).
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 

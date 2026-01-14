@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+隐藏默认的页签增加图标，给自定义触发器绑定事件。
+</docs>
+
+<docs lang="en-US">
+Hide default plus icon, and bind event for customized trigger.
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 

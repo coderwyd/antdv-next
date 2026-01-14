@@ -1,17 +1,20 @@
-<script setup lang="ts">
-import { computed, ref } from 'vue'
+<docs lang="zh-CN">
+可以在页签两边添加附加操作。
+</docs>
 
-interface TabItem {
-  key: string
-  label: string
-  content: string
-}
+<docs lang="en-US">
+You can add extra actions to the right or left or even both side of Tabs.
+</docs>
+
+<script setup lang="ts">
+import type { TabsProps } from 'antdv-next'
+import { computed, h, ref, resolveComponent } from 'vue'
 
 type PositionType = 'left' | 'right'
 
 const options = ['left', 'right']
 
-const items: TabItem[] = Array.from({ length: 3 }).map((_, i) => {
+const items: TabsProps['items'] = Array.from({ length: 3 }).map((_, i) => {
   const id = String(i + 1)
   return {
     key: id,
@@ -32,15 +35,15 @@ const slot = computed(() => {
   })
   return result
 })
+
+const extraContent = computed(() =>
+  h(resolveComponent('a-button') as any, null, { default: () => 'Extra Action' }),
+)
 </script>
 
 <template>
   <div>
-    <a-tabs :items="items">
-      <template #tabBarExtraContent>
-        <a-button>Extra Action</a-button>
-      </template>
-    </a-tabs>
+    <a-tabs :items="items" :tab-bar-extra-content="extraContent" />
     <br>
     <br>
     <br>
@@ -61,3 +64,14 @@ const slot = computed(() => {
     </a-tabs>
   </div>
 </template>
+
+<style scoped>
+.tabs-extra-demo-button {
+  margin-inline-end: 16px;
+}
+
+.ant-row-rtl .tabs-extra-demo-button {
+  margin-inline-end: 0;
+  margin-inline-start: 16px;
+}
+</style>

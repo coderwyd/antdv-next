@@ -1,17 +1,16 @@
+<docs lang="zh-CN">
+设置 `indicator` 属性，自定义指示条宽度和对齐方式。
+</docs>
+
+<docs lang="en-US">
+Set `indicator` prop to custom indicator size and align.
+</docs>
+
 <script setup lang="ts">
+import type { TabsProps } from 'antdv-next'
 import { ref } from 'vue'
 
-interface TabItem {
-  key: string
-  label: string
-  content: string
-}
-
-function onChange(key: string) {
-  console.log(key)
-}
-
-const items: TabItem[] = [
+const items: TabsProps['items'] = [
   { key: '1', label: 'Tab 1', content: 'Content of Tab Pane 1' },
   { key: '2', label: 'Tab 2', content: 'Content of Tab Pane 2' },
   { key: '3', label: 'Tab 3', content: 'Content of Tab Pane 3' },
@@ -21,7 +20,9 @@ type Align = 'start' | 'center' | 'end'
 
 const alignValue = ref<Align>('center')
 
-const activeKey = ref('1')
+function onChange(key: string) {
+  console.log(key)
+}
 </script>
 
 <template>
@@ -32,7 +33,7 @@ const activeKey = ref('1')
       :options="['start', 'center', 'end']"
     />
     <a-tabs
-      v-model:active-key="activeKey"
+      default-active-key="1"
       :items="items"
       :indicator="{ size: (origin: number) => origin - 20, align: alignValue }"
       @change="onChange"

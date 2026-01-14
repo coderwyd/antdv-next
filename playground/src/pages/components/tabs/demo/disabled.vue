@@ -1,14 +1,15 @@
+<docs lang="zh-CN">
+禁用某一项。
+</docs>
+
+<docs lang="en-US">
+Disabled a tab.
+</docs>
+
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { TabsProps } from 'antdv-next'
 
-interface TabItem {
-  key: string
-  label: string
-  content: string
-  disabled?: boolean
-}
-
-const items: TabItem[] = [
+const items: TabsProps['items'] = [
   {
     key: '1',
     label: 'Tab 1',
@@ -26,9 +27,8 @@ const items: TabItem[] = [
     content: 'Tab 3',
   },
 ]
-const activeKey = ref('1')
 </script>
 
 <template>
-  <a-tabs v-model:active-key="activeKey" :items="items" />
+  <a-tabs default-active-key="1" :items="items" />
 </template>

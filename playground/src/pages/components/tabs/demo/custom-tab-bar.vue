@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+使用 `renderTabBar` 配合吸顶容器实现固定页签头。
+</docs>
+
+<docs lang="en-US">
+Use `renderTabBar` with a sticky container to pin the tab bar.
+</docs>
+
 <script setup lang="ts">
 import { theme } from 'antdv-next'
 import { ref } from 'vue'

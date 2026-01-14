@@ -1,6 +1,13 @@
+<docs lang="zh-CN">
+默认选中第一项。
+</docs>
+
+<docs lang="en-US">
+Default activate first tab.
+</docs>
+
 <script setup lang="ts">
 import type { TabsProps } from 'antdv-next'
-import { ref } from 'vue'
 
 const items: TabsProps['items'] = [
   {
@@ -19,9 +26,8 @@ const items: TabsProps['items'] = [
     content: 'Content of Tab Pane 3',
   },
 ]
-const activeKey = ref('1')
 </script>
 
 <template>
-  <a-tabs v-model:active-key="activeKey" :items="items" />
+  <a-tabs :items="items" />
 </template>

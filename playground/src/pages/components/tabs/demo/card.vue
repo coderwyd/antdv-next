@@ -1,6 +1,13 @@
+<docs lang="zh-CN">
+另一种样式的页签，不提供对应的垂直样式。
+</docs>
+
+<docs lang="en-US">
+Another type of Tabs, which doesn't support vertical mode.
+</docs>
+
 <script setup lang="ts">
 import type { TabsProps } from 'antdv-next'
-import { ref } from 'vue'
 
 function onChange(key: string) {
   console.log(key)
@@ -14,9 +21,8 @@ const items: TabsProps['items'] = Array.from({ length: 3 }).map((_, i) => {
     content: `Content of Tab Pane ${id}`,
   }
 })
-const activeKey = ref('1')
 </script>
 
 <template>
-  <a-tabs v-model:active-key="activeKey" type="card" :items="items" @change="onChange" />
+  <a-tabs default-active-key="1" type="card" :items="items" @change="onChange" />
 </template>

@@ -1,10 +1,19 @@
+<docs lang="zh-CN">
+有图标的标签。
+</docs>
+
+<docs lang="en-US">
+The Tab with Icon.
+</docs>
+
 <script setup lang="ts">
+import type { TabsProps } from 'antdv-next'
 import { AndroidOutlined, AppleOutlined } from '@antdv-next/icons'
-import { h, ref } from 'vue'
+import { h } from 'vue'
 
 const icons = [AppleOutlined, AndroidOutlined]
 
-const items = icons.map((Icon, i) => {
+const items: TabsProps['items'] = icons.map((Icon, i) => {
   const id = String(i + 1)
   return {
     key: id,
@@ -13,9 +22,8 @@ const items = icons.map((Icon, i) => {
     icon: () => h(Icon),
   }
 })
-const activeKey = ref('2')
 </script>
 
 <template>
-  <a-tabs v-model:active-key="activeKey" :items="items" />
+  <a-tabs default-active-key="2" :items="items" />
 </template>
