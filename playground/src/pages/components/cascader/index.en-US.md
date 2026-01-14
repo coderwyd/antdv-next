@@ -16,6 +16,22 @@ demo:
 ## Examples {#examples}
 
 <demo-group>
+<demo src="./demo/multiple.vue">Multiple</demo>
+<demo src="./demo/showCheckedStrategy.vue">ShowCheckedStrategy</demo>
+<demo src="./demo/size.vue">Size</demo>
+<demo src="./demo/custom-render.vue">Custom render</demo>
+<demo src="./demo/search.vue">Search</demo>
+<demo src="./demo/lazy.vue">Load Options Lazily</demo>
+<demo src="./demo/fields-name.vue">Custom Field Names</demo>
+<demo src="./demo/suffix.vue" version="5.22.0">Prefix and Suffix</demo>
+<demo src="./demo/custom-dropdown.vue">Custom dropdown</demo>
+<demo src="./demo/placement.vue">Placement</demo>
+<demo src="./demo/variant.vue" version="5.13.0">Variants</demo>
+<demo src="./demo/status.vue">Status</demo>
+<demo src="./demo/style-class.vue" version="6.0.0">Custom semantic dom styling</demo>
+<demo src="./demo/panel.vue" version=">= 5.10.0">Panel</demo>
+<demo src="./demo/render-panel.vue" debug>_InternalPanelDoNotUseOrYouWillBeFired</demo>
+<demo src="./demo/component-token.vue" debug>Component Token</demo>
 </demo-group>
 
 ## API

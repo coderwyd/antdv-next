@@ -17,6 +17,28 @@ demo:
 ## 示例 {#examples}
 
 <demo-group>
+<demo src="./demo/basic.vue">基本</demo>
+<demo src="./demo/default-value.vue">默认值</demo>
+<demo src="./demo/custom-trigger.vue">可以自定义显示</demo>
+<demo src="./demo/hover.vue">移入展开</demo>
+<demo src="./demo/disabled-option.vue">禁用选项</demo>
+<demo src="./demo/change-on-select.vue">选择即改变</demo>
+<demo src="./demo/multiple.vue">多选</demo>
+<demo src="./demo/showCheckedStrategy.vue">自定义回填方式</demo>
+<demo src="./demo/size.vue">大小</demo>
+<demo src="./demo/custom-render.vue">自定义已选项</demo>
+<demo src="./demo/search.vue">搜索</demo>
+<demo src="./demo/lazy.vue">动态加载选项</demo>
+<demo src="./demo/fields-name.vue">自定义字段名</demo>
+<demo src="./demo/suffix.vue">前后缀</demo>
+<demo src="./demo/custom-dropdown.vue">扩展菜单</demo>
+<demo src="./demo/placement.vue">弹出位置</demo>
+<demo src="./demo/variant.vue">形态变体</demo>
+<demo src="./demo/status.vue">自定义状态</demo>
+<demo src="./demo/style-class.vue" >自定义语义结构的样式和类</demo>
+<demo src="./demo/panel.vue" >面板使用</demo>
+<demo src="./demo/render-panel.vue" debug>_InternalPanelDoNotUseOrYouWillBeFired</demo>
+<demo src="./demo/component-token.vue" debug>Component Token</demo>
 </demo-group>
 
 ## API
