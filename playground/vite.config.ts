@@ -46,6 +46,11 @@ export default defineConfig({
       '@v-c/textarea',
       '@v-c/select',
       '@v-c/picker',
+      '@v-c/drawer',
+      '@v-c/dialog',
+    ],
+    include: [
+      '@antdv-next/icons',
     ],
   },
   resolve: {

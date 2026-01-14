@@ -20,6 +20,7 @@
     "@types/jsdom": "catalog:",
     "@types/markdown-it": "catalog:",
     "@types/node": "catalog:",
+    "@v-c/portal": "link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/portal",
     "@v-c/trigger": "catalog:",
     "@v-c/util": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
