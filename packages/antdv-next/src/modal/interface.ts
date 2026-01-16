@@ -6,7 +6,7 @@ import type { Breakpoint } from '../_util/responsiveObserver'
 import type { VueNode } from '../_util/type'
 import type { ButtonProps, LegacyButtonType } from '../button'
 import type { DirectionType } from '../config-provider/context'
-import type { FocusableConfig } from '../drawer/useFocusable.ts'
+import type { FocusableConfig, OmitFocusType } from '../drawer/useFocusable.ts'
 
 export type SemanticName
   = | 'root'
@@ -38,6 +38,7 @@ interface ModalCommonProps
     | 'modalRender'
     | 'rootStyle'
     | 'style'
+    | OmitFocusType
   >
 {
   footer?: VueNode | ((params: { originNode: VueNode, extra: { OkBtn: any, CancelBtn: any } }) => any)

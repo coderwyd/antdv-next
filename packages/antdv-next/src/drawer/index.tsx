@@ -3,7 +3,7 @@ import type { CSSMotionProps } from '@v-c/util/dist/utils/transition'
 import type { App, SlotsType } from 'vue'
 import type { MaskType } from '../_util/hooks'
 import type { DrawerClassNamesType, DrawerPanelProps, DrawerStylesType } from './DrawerPanel'
-import type { FocusableConfig } from './useFocusable.ts'
+import type { FocusableConfig, OmitFocusType } from './useFocusable.ts'
 import VcDrawer from '@v-c/drawer'
 import { clsx } from '@v-c/util'
 import { getTransitionName } from '@v-c/util/dist/utils/transition'
@@ -34,7 +34,10 @@ export interface DrawerResizableConfig {
 }
 
 export interface DrawerProps
-  extends Omit<VcDrawerProps, 'maskStyle' | 'destroyOnHidden' | 'rootClassName' | 'mask' | 'resizable' | 'classNames' | 'styles' | 'onClose' | 'onKeyUp' | 'onKeyDown' | 'onMouseEnter' | 'onMouseLeave' | 'onMouseOver' | 'onClick'>,
+  extends Omit<
+    VcDrawerProps,
+'maskStyle' | 'destroyOnHidden' | 'rootClassName' | 'mask' | 'resizable' | 'classNames' | 'styles' | 'onClose' | 'onKeyUp' | 'onKeyDown' | 'onMouseEnter' | 'onMouseLeave' | 'onMouseOver' | 'onClick' | OmitFocusType
+  >,
   Omit<DrawerPanelProps, 'prefixCls' | 'ariaId' | 'onClose'>
 {
   size?: sizeType | number
