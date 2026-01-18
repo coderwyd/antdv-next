@@ -10,7 +10,6 @@ import type {
 } from '../../theme/internal'
 import { FastColor } from '@ant-design/fast-color'
 import { initComponentToken } from '../../input/style'
-
 import { getArrowToken } from '../../style/roundedArrow'
 
 export interface PanelComponentToken extends MultipleSelectorToken {
