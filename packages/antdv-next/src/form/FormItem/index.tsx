@@ -7,7 +7,7 @@ import type { InternalNamePath, Meta, NamePath, Rule, RuleError, RuleObject, Val
 import type { ItemHolderProps } from './ItemHolder.tsx'
 import { clsx } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
-import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
+import { cloneVNode, computed, defineComponent, isVNode, onBeforeUnmount, shallowRef, watch } from 'vue'
 import { checkRenderNode } from '../../_util/vueNode.ts'
 import { useComponentBaseConfig } from '../../config-provider/context'
 import useCSSVarCls from '../../config-provider/hooks/useCSSVarCls'
@@ -55,7 +55,6 @@ export type FormItemProps = BaseFormItemProps
     validateStatus?: ValidateStatus
     required?: boolean
     hidden?: boolean
-    // initialValue?: any;
     messageVariables?: Record<string, string>
     tooltip?: LabelTooltipType
     layout?: FormItemLayout
@@ -299,7 +298,7 @@ const InternalFormItem = defineComponent<
       triggerValidate('change')
     }
 
-    const onFieldFoucs = () => {
+    const onFieldFocus = () => {
       updateMeta({ touched: true })
       triggerValidate('focus')
     }
@@ -396,7 +395,7 @@ const InternalFormItem = defineComponent<
       triggerBlur: onFieldBlur,
       triggerChange: onFieldChange,
       clearValidate,
-      triggerFocus: onFieldFoucs,
+      triggerFocus: onFieldFocus,
     })
     return () => {
       const children: any = checkRenderNode(filterEmpty(slots.default?.() ?? []))
@@ -412,6 +411,27 @@ const InternalFormItem = defineComponent<
       currentFieldId?: string,
       isRequiredMark?: boolean,
     ) {
+      // 判断children是否为单一的元素，如果是则塞入onBlur用以触发校验
+      if ((Array.isArray(baseChildren) && baseChildren.length === 1 && isVNode(baseChildren[0])) || isVNode(baseChildren)) {
+        const child = isVNode(baseChildren) ? baseChildren : baseChildren[0]
+        const childProps = child.props || {}
+        const newChildProps = {
+          ...childProps,
+          onBlur: (...args: any[]) => {
+            onFieldBlur()
+            if (childProps.onBlur) {
+              childProps.onBlur(...args)
+            }
+          },
+          onFocus: (...args: any[]) => {
+            onFieldFocus()
+            if (childProps.onFocus) {
+              childProps.onFocus(...args)
+            }
+          },
+        }
+        baseChildren = cloneVNode(child, newChildProps)
+      }
       if (props.noStyle && !props.hidden) {
         return (
           <StatusProvider

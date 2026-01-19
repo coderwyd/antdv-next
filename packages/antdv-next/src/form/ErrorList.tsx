@@ -117,41 +117,46 @@ const ErrorList = defineComponent<
       const transitionGroupPropsName = `${prefixCls.value}-show-help-item`
       const transitionGroupProps = {
         tag: 'div',
-        class: clsx(
-          baseClassName.value,
-          cssVarCls.value,
-          rootCls.value,
-          rootClassName,
-          hashId.value,
-        ),
         ...getTransitionGroupProps(transitionGroupPropsName),
         ...collapseMotion,
         name: `${prefixCls.value}-show-help-item`,
+
       }
       return (
         <Transition {...transitionProps}>
-          <TransitionGroup
-            {...transitionGroupProps}
+          <div
             v-show={!!filledKeyFullKeyList.length}
+            class={clsx(
+              baseClassName.value,
+              cssVarCls.value,
+              rootCls.value,
+              rootClassName,
+              hashId.value,
+            )}
           >
-            {filledKeyFullKeyList.map((itemProps) => {
-              const { key, error, errorStatus, class: itemClassName, style: itemStyle } = itemProps
-              return (
-                <div
-                  key={key}
-                  class={clsx(
-                    itemClassName,
-                    {
-                      [`${baseClassName.value}-${errorStatus}`]: !!errorStatus,
-                    },
-                  )}
-                  style={itemStyle}
-                >
-                  {error}
-                </div>
-              )
-            })}
-          </TransitionGroup>
+            <TransitionGroup
+              {...transitionGroupProps}
+              appear={true}
+            >
+              {filledKeyFullKeyList.map((itemProps) => {
+                const { key, error, errorStatus, class: itemClassName, style: itemStyle } = itemProps
+                return (
+                  <div
+                    key={key}
+                    class={clsx(
+                      itemClassName,
+                      {
+                        [`${baseClassName.value}-${errorStatus}`]: !!errorStatus,
+                      },
+                    )}
+                    style={itemStyle}
+                  >
+                    {error}
+                  </div>
+                )
+              })}
+            </TransitionGroup>
+          </div>
         </Transition>
       )
     }

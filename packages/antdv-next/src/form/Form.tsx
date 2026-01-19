@@ -71,6 +71,7 @@ export interface FormProps extends ComponentBaseProps {
   preserve?: boolean
   clearOnDestroy?: boolean
   validateOnRuleChange?: boolean
+  autoComplete?: string | undefined
 }
 
 export interface FormEmits {

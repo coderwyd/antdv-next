@@ -44,7 +44,7 @@ export interface InputNumberStepContext {
 
 export interface InputNumberProps
   extends ComponentBaseProps,
-  Omit<VcInputNumberProps, 'class' | 'controls' | 'className' | 'style' | 'prefixCls' | 'classNames' | 'styles' | 'prefix' | 'suffix' | 'onChange' | 'onClick' | 'onInput' | 'onBeforeInput' | 'onBlur' | 'onCompositionEnd' | 'onCompositionStart' | 'onKeyDown' | 'onKeyUp' | 'onMouseDown' | 'onMouseEnter' | 'onPressEnter' | 'onMouseUp' | 'onMouseMove'> {
+  Omit<VcInputNumberProps, 'class' | 'controls' | 'className' | 'style' | 'prefixCls' | 'classNames' | 'styles' | 'prefix' | 'suffix' | 'onChange' | 'onClick' | 'onInput' | 'onBeforeInput' | 'onBlur' | 'onCompositionEnd' | 'onCompositionStart' | 'onKeyDown' | 'onKeyUp' | 'onMouseDown' | 'onMouseEnter' | 'onPressEnter' | 'onMouseUp' | 'onMouseMove' | 'onFocus'> {
   size?: SizeType
   status?: InputStatus
   disabled?: boolean
@@ -117,6 +117,7 @@ const omitKeys: string[] = [
   'onBeforeInput',
   'keyboard',
   'onClick',
+  'onFocus',
   'onMouseDown',
   'onMouseUp',
   'onMouseLeave',

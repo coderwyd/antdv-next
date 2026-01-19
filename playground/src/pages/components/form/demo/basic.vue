@@ -31,6 +31,7 @@ const formRef = shallowRef<FormInstance>()
     :label-col="{ span: 8 }"
     :wrapper-col="{ span: 16 }"
     style="max-width: 600px"
+    auto-complete="off"
     @finish="handleFinished"
     @finish-failed="handleFinishFailed"
   >
