@@ -33,7 +33,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
   <demo src="./demo/form-item-path.vue">Path Prefix</demo>
   <demo src="./demo/dynamic-form-item.vue">Dynamic Form Item</demo>
   <demo src="./demo/dynamic-form-items.vue">Dynamic Form nest Items</demo>
-  <demo src="./demo/dynamic-form-items-no-style.vue" debug>Dynamic Form nest pure Items</demo>
   <demo src="./demo/dynamic-form-items-complex.vue">Complex Dynamic Form Item</demo>
   <demo src="./demo/nest-messages.vue">Nest</demo>
   <demo src="./demo/complex-form-control.vue">complex form control</demo>
@@ -51,15 +50,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
   <demo src="./demo/dynamic-rule.vue">Dynamic Rules</demo>
   <demo src="./demo/form-dependencies.vue">Dependencies</demo>
   <demo src="./demo/getValueProps-normalize.vue">getValueProps + normalize</demo>
-  <demo src="./demo/validate-scroll-to-field.vue" iframe="360">Slide to error field</demo>
+  <demo src="./demo/validate-scroll-to-field.vue" iframe="240">Slide to error field</demo>
   <demo src="./demo/validate-other.vue">Other Form Controls</demo>
-  <demo src="./demo/style-class.vue" version="6.0.0">Custom semantic dom styling</demo>
-  <demo src="./demo/disabled-input-debug.vue" debug>Disabled Input Debug</demo>
-  <demo src="./demo/label-debug.vue" debug>label ellipsis</demo>
-  <demo src="./demo/col-24-debug.vue" debug>Test col 24 usage</demo>
-  <demo src="./demo/ref-item.vue" debug>Ref item</demo>
-  <demo src="./demo/custom-feedback-icons.vue" debug>Custom feedback icons</demo>
-  <demo src="./demo/component-token.vue" debug>Component Token</demo>
+  <demo src="./demo/style-class.vue">Custom semantic dom styling</demo>
 </demo-group>
 
 ## API

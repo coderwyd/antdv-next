@@ -375,24 +375,22 @@ const InternalForm = defineComponent<
 
     const nativeElementRef = shallowRef<HTMLFormElement>()
 
-    const scrollToField = (options: ScrollFocusOptions | boolean, fieldName: InternalNamePath) => {
-      if (options) {
-        let defaultScrollToFirstError: ScrollFocusOptions = { block: 'nearest' }
-        if (typeof options === 'object') {
-          defaultScrollToFirstError = { ...defaultScrollToFirstError, ...options }
-        }
-        const targetId = getFieldId(fieldName, props.name)
-        const node = targetId ? document.getElementById(targetId) : null
-        if (node) {
-          // @ts-expect-error this is fine
-          scrollIntoView(node, defaultScrollToFirstError)
-          if (defaultScrollToFirstError.focus !== false) {
-            try {
-              node.focus()
-            }
-            catch {
-              // ignore focus error
-            }
+    const scrollToField = (fieldName: InternalNamePath, options: ScrollFocusOptions | boolean = {}) => {
+      let defaultScrollToFirstError: ScrollFocusOptions = { block: 'nearest' }
+      if (typeof options === 'object') {
+        defaultScrollToFirstError = { ...defaultScrollToFirstError, ...options }
+      }
+      const targetId = getFieldId(fieldName, props.name)
+      const node = targetId ? document.getElementById(targetId) : null
+      if (node) {
+        // @ts-expect-error this is fine
+        scrollIntoView(node, defaultScrollToFirstError)
+        if (defaultScrollToFirstError.focus !== false) {
+          try {
+            node.focus()
+          }
+          catch {
+            // ignore focus error
           }
         }
       }
@@ -403,10 +401,10 @@ const InternalForm = defineComponent<
       if (errorInfo.errorFields?.length) {
         const fieldName = errorInfo.errorFields?.[0]?.name
         if (props.scrollToFirstError !== undefined) {
-          scrollToField(props.scrollToFirstError, fieldName!)
+          scrollToField(fieldName!, props.scrollToFirstError)
         }
         else if (contextScrollToFirstError.value !== undefined) {
-          scrollToField(contextScrollToFirstError.value, fieldName!)
+          scrollToField(fieldName!, contextScrollToFirstError.value)
         }
       }
     }
@@ -539,7 +537,7 @@ const InternalForm = defineComponent<
       submit,
       nativeElement: nativeElementRef,
       scrollToField: (name: NamePath, options: ScrollFocusOptions | boolean = {}) => {
-        scrollToField(options, getNamePath(name))
+        scrollToField(getNamePath(name), options)
       },
       focusField: (name: NamePath) => {
         const targetId = getFieldId(getNamePath(name), props.name)

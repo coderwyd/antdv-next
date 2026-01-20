@@ -34,7 +34,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
   <demo src="./demo/form-item-path.vue">路径前缀</demo>
   <demo src="./demo/dynamic-form-item.vue">动态表单项</demo>
   <demo src="./demo/dynamic-form-items.vue">动态嵌套表单项</demo>
-  <demo src="./demo/dynamic-form-items-no-style.vue" debug>纯净嵌套表单项</demo>
   <demo src="./demo/dynamic-form-items-complex.vue">复杂动态表单项</demo>
   <demo src="./demo/nest-messages.vue">嵌套字段</demo>
   <demo src="./demo/complex-form-control.vue">复杂表单控件</demo>
@@ -52,15 +51,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
   <demo src="./demo/dynamic-rule.vue">动态规则</demo>
   <demo src="./demo/form-dependencies.vue">字段依赖</demo>
   <demo src="./demo/getValueProps-normalize.vue">值转换</demo>
-  <demo src="./demo/validate-scroll-to-field.vue" iframe="360">滑动到错误字段</demo>
+  <demo src="./demo/validate-scroll-to-field.vue" iframe="240">滑动到错误字段</demo>
   <demo src="./demo/validate-other.vue">其他表单控件</demo>
   <demo src="./demo/style-class.vue" version="6.0.0">自定义语义结构样式</demo>
-  <demo src="./demo/disabled-input-debug.vue" debug>禁用输入调试</demo>
-  <demo src="./demo/label-debug.vue" debug>label 省略</demo>
-  <demo src="./demo/col-24-debug.vue" debug>col 24 调试</demo>
-  <demo src="./demo/ref-item.vue" debug>Ref 项</demo>
-  <demo src="./demo/custom-feedback-icons.vue" debug>自定义反馈图标</demo>
-  <demo src="./demo/component-token.vue" debug>组件 Token</demo>
 </demo-group>
 
 ## API
