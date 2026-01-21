@@ -9,6 +9,62 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 
 <DocHeading></DocHeading>
 
+## When To Use
+
+- To display a collection of structured data.
+- To sort, search, paginate, filter data.
+
+## How To Use
+
+Specify `dataSource` of Table as an array of data.
+
+```vue
+<script setup lang="ts">
+const dataSource = [
+  {
+    key: '1',
+    name: 'Mike',
+    age: 32,
+    address: '10 Downing Street',
+  },
+  {
+    key: '2',
+    name: 'John',
+    age: 42,
+    address: '10 Downing Street',
+  },
+];
+
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+];
+</script>
+
+<template>
+  <a-table :data-source="dataSource" :columns="columns" />
+</template>
+```
+
+## Promotion
+
+- [Kitchen Sketch Plugin 💎](https://kitchen.alipay.com)
+- [ProTable - Advanced Tables](https://procomponents.ant.design/en-US/components/table)
+- [S2 - Analytical Tables](https://github.com/antvis/s2/)
+
 ## Examples {#examples}
 
 <demo-group>

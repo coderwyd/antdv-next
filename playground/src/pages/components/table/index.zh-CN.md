@@ -9,8 +9,62 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 ---
 
 <DocHeading></DocHeading>
+## 何时使用 {#when-to-use}
 
-## 示例 {#examples}
+- 当有大量结构化的数据需要展现时；
+- 当需要对数据进行排序、搜索、分页、自定义操作等复杂行为时。
+
+## 如何使用 {#how-to-use}
+
+指定表格的数据源 `dataSource` 为一个数组。
+
+```vue
+<script setup lang="ts">
+const dataSource = [
+  {
+    key: '1',
+    name: 'Mike',
+    age: 32,
+    address: '10 Downing Street',
+  },
+  {
+    key: '2',
+    name: 'John',
+    age: 42,
+    address: '10 Downing Street',
+  },
+];
+
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+];
+</script>
+
+<template>
+  <a-table :data-source="dataSource" :columns="columns" />
+</template>
+```
+
+## 相关推荐 {#promotion}
+
+- [Kitchen Sketch 插件 💎](https://kitchen.alipay.com/)：设计师神器，两步自动生成 Ant Design 表格组件。
+- [S2](https://s2.antv.vision/zh) 多维交叉分析表格：[AntV S2 和 Antd Table 有什么区别？](https://zhuanlan.zhihu.com/p/494995642)
+
+## 代码演示 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">基础用法</demo>
