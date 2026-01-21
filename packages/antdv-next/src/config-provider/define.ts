@@ -1,5 +1,6 @@
 import type { WarningContextProps } from '../_util/warning.ts'
 import type { Locale } from '../locale'
+import type { ColumnType } from '../table'
 import type {
   AlertConfig,
   BadgeConfig,
@@ -50,6 +51,7 @@ export interface ConfigProviderProps {
   prefixCls?: string
   iconPrefixCls?: string
   renderEmpty?: RenderEmptyHandler
+  transformCellText?: (ctx: { text: any, column: ColumnType<any>, record: Record<string, any>, index: number }) => any
   csp?: CSPConfig
   variant?: Variant
   input?: InputConfig
@@ -148,6 +150,7 @@ export interface ConfigProviderProps {
 
 export interface ConfigProviderSlots {
   renderEmpty?: (componentName?: string) => any
+  transformCellText?: (ctx: { text: any, column: ColumnType<any>, record: Record<string, any>, index: number }) => any
   [key: string]: any
 }
 

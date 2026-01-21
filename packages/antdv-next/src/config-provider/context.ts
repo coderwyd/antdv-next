@@ -61,6 +61,7 @@ import type { TreeProps } from '../tree/Tree.tsx'
 import type { BlockProps as TypographyBaseProps } from '../typography/interface'
 import type { UploadProps } from '../upload/interface.ts'
 import type { RenderEmptyHandler } from './defaultRenderEmpty'
+import type { ConfigProviderProps } from './index.tsx'
 import { computed, inject, provide, ref } from 'vue'
 
 export const defaultPrefixCls = 'ant'
@@ -378,6 +379,8 @@ export interface TableConfig<RecordType extends AnyObject = AnyObject>
   rowKey?: TableProps<RecordType>['rowKey']
   classes?: TableProps['classes']
   styles?: TableProps['styles']
+  bodyCell?: TableProps['bodyCell']
+  headerCell?: TableProps['headerCell']
 }
 export interface ConfigComponentProps {
   input?: InputConfig
@@ -459,6 +462,7 @@ export interface ConfigConsumerProps extends ConfigComponentProps {
   iconPrefixCls: string
   getPrefixCls: (suffixCls?: string, customizePrefixCls?: string) => string
   renderEmpty?: RenderEmptyHandler
+  transformCellText?: ConfigProviderProps['transformCellText']
   /**
    * @descCN 设置 [Content Security Policy](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP) 配置。
    * @descEN Set the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) config.

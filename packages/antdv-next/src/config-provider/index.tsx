@@ -247,14 +247,17 @@ const ConfigProvider = defineComponent<
 >(
   (props = providerDefaultProps, { slots }) => {
     const context = useConfig()
-    const { locale } = useLocaleContext() ?? { }
+    const { locale } = useLocaleContext() ?? {}
     return () => {
       const renderEmpty = slots?.renderEmpty ?? props?.renderEmpty
+      const transformCellText = slots?.transformCellText ?? props?.transformCellText
+
       return (
         <ProviderChildren
           parentContext={context.value}
           {...props}
           renderEmpty={renderEmpty}
+          transformCellText={transformCellText}
           legacyLocale={locale?.value}
           v-slots={slots}
         />

@@ -35,7 +35,7 @@ import scrollTo from '../_util/scrollTo.ts'
 import { getSlotPropsFnRun, toPropsRefs } from '../_util/tools.ts'
 import { devUseWarning, isDev } from '../_util/warning.ts'
 import ConfigProvider from '../config-provider'
-import { useComponentBaseConfig } from '../config-provider/context.ts'
+import { useComponentBaseConfig, useConfig } from '../config-provider/context.ts'
 import { DefaultRenderEmpty } from '../config-provider/defaultRenderEmpty.tsx'
 import useCSSVarCls from '../config-provider/hooks/useCSSVarCls.ts'
 import { useSize } from '../config-provider/hooks/useSize.ts'
@@ -198,7 +198,11 @@ const InternalTable = defineComponent<
       renderEmpty,
       getPopupContainer: contextGetPopupContainer,
       virtual: contextVirtual,
-    } = useComponentBaseConfig('table', props)
+      bodyCell: contextBodyCell,
+      headerCell: contextHeaderCell,
+    } = useComponentBaseConfig('table', props, ['bodyCell', 'headerCell'])
+
+    const configCtx = useConfig()
 
     const { classes, styles } = toPropsRefs(props, 'classes', 'styles')
 
@@ -532,6 +536,28 @@ const InternalTable = defineComponent<
       }
     })
 
+    const renderHeaderCell = (ctx: { column: ColumnType, index: number, text: any }) => {
+      const node = getSlotPropsFnRun(slots, props as any, 'headerCell', true, ctx)
+      if (!node) {
+        if (contextHeaderCell.value) {
+          return contextHeaderCell.value(ctx)
+        }
+      }
+      return node
+    }
+
+    const renderBodyCell = (ctx: { column: ColumnType, index: number, text: any, record: any }) => {
+      const node = getSlotPropsFnRun(slots, props as any, 'bodyCell', true, ctx)
+      if (!node) {
+        if (contextBodyCell.value) {
+          return contextBodyCell.value(ctx)
+        }
+        else if (configCtx.value?.transformCellText) {
+          return configCtx.value.transformCellText(ctx)
+        }
+      }
+      return node
+    }
     return () => {
       const columnTitlePropsFn = () => {
         const mergedFilters: Record<string, FilterValue> = {}
@@ -548,10 +574,6 @@ const InternalTable = defineComponent<
       const columnTitleProps = columnTitlePropsFn()
       const [transformTitleColumns] = useTitleColumns(columnTitleProps)
 
-      const renderHeaderCell = (ctx: { column: ColumnType, index: number, text: any }) =>
-        getSlotPropsFnRun(slots, props as any, 'headerCell', true, ctx)
-      const renderBodyCell = (ctx: { column: ColumnType, index: number, text: any, record: any }) =>
-        getSlotPropsFnRun(slots, props as any, 'bodyCell', true, ctx)
       const renderExpandedRow = slots.expandedRowRender
         ? (record: AnyObject, index: number, indent: number, expanded: boolean) =>
             getSlotPropsFnRun(slots, props as any, 'expandedRowRender', true, {
