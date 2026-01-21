@@ -538,7 +538,7 @@ const InternalTable = defineComponent<
 
     const renderHeaderCell = (ctx: { column: ColumnType, index: number, text: any }) => {
       const node = getSlotPropsFnRun(slots, props as any, 'headerCell', true, ctx)
-      if (!node) {
+      if (node === null || node === undefined) {
         if (contextHeaderCell.value) {
           return contextHeaderCell.value(ctx)
         }
@@ -548,7 +548,7 @@ const InternalTable = defineComponent<
 
     const renderBodyCell = (ctx: { column: ColumnType, index: number, text: any, record: any }) => {
       const node = getSlotPropsFnRun(slots, props as any, 'bodyCell', true, ctx)
-      if (!node) {
+      if (node === null || node === undefined) {
         if (contextBodyCell.value) {
           return contextBodyCell.value(ctx)
         }
