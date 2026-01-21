@@ -35,9 +35,9 @@ demo:
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |

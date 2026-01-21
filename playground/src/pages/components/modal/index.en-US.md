@@ -41,9 +41,9 @@ Additionally, if you need to show a simple confirmation dialog, you can use [`Ap
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -82,12 +82,6 @@ Common props ref：[Common props](/docs/vue/common-props)
 | wrapProps | Wrapper element props | Record<string, any> | - | - |
 | zIndex | The `z-index` of the Modal | number | 1000 | - |
 
-#### Note
-
-- The state of Modal will be preserved at its component lifecycle by default, if you wish to open it with a brand new state every time, set `destroyOnHidden` on it.
-- If you use Form in Modal, and need to clear fields when closing, set `<a-form :preserve="false" />`.
-- `Modal.method()` RTL mode only supports hooks usage.
-
 ### Events {#events}
 
 | Event | Description | Type | Version |
@@ -106,6 +100,12 @@ Common props ref：[Common props](/docs/vue/common-props)
 | cancelText | Cancel button text | () => any | - |
 | closeIcon | Custom close icon | () => any | - |
 | modalRender | Custom modal content render | (node: any) => any | - |
+
+### Note
+
+- The state of Modal will be preserved at its component lifecycle by default, if you wish to open it with a brand new state every time, set `destroyOnHidden` on it.
+- If you use Form in Modal, and need to clear fields when closing, set `<a-form :preserve="false" />`.
+- `Modal.method()` RTL mode only supports hooks usage.
 
 ### Modal.method() {#modalmethod}
 

@@ -33,9 +33,7 @@ tag: 6.0.0
 
 Common props ref：[Common props](/docs/vue/common-props)
 
-### Masonry
-
-#### Property {#masonry-property}
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -47,17 +45,20 @@ Common props ref：[Common props](/docs/vue/common-props)
 | items | Masonry items | [MasonryItem](#masonryitem)[] | - | - |
 | itemRender | Custom item rendering function | (item: MasonryItem) =&gt; VueNode | - | - |
 
-#### Events {#masonry-events}
+### Events 
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
 | layoutChange | Callback for column sorting changes | (sortInfo: &#123; key: Key; column: number &#125;[]) =&gt; void | - |
 
-#### Slots {#masonry-slots}
+### Slots
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
 | itemRender | Custom item rendering slot | (itemInfo: MasonryItem & &#123; index: number &#125;) =&gt; VueNode | - |
+
+
+## Types
 
 ### MasonryItem
 

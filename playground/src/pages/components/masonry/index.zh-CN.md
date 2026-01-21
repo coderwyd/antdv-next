@@ -33,9 +33,8 @@ demo:
 
 通用属性参考：[通用属性](/docs/vue/common-props)
 
-### Masonry
 
-#### 属性 {#masonry-property}
+### 属性 {#props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -47,17 +46,19 @@ demo:
 | items | 瀑布流项 | [MasonryItem](#masonryitem)[] | - | - |
 | itemRender | 自定义项渲染 | (item: MasonryItem) =&gt; VueNode | - | - |
 
-#### 事件 {#masonry-events}
+### 事件 {#events}
 
 | 事件 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | layoutChange | 列排序回调 | (sortInfo: &#123; key: Key; column: number &#125;[]) =&gt; void | - |
 
-#### 插槽 {#masonry-slots}
+### 插槽 {#slots}
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | itemRender | 自定义项渲染插槽 | (itemInfo: MasonryItem & &#123; index: number &#125;) =&gt; VueNode | - |
+
+## 类型 {#types}
 
 ### MasonryItem
 

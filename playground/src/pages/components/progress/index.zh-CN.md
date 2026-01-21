@@ -42,9 +42,9 @@ demo:
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
+
+### 属性 {#props}
 
 各类型共用的属性。
 

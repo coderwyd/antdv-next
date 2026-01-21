@@ -41,9 +41,9 @@ If it will take a long time to complete an operation, you can use `Progress` to 
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 Properties shared by all types.
 

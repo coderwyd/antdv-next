@@ -20,9 +20,9 @@ demo:
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -38,7 +38,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | allowClear | If allow to remove mentions content with clear icon | boolean \| &#123;     clearIcon?: VueNode   &#125; | false | 5.13.0 |
 | disabled | - | boolean | - | - |
 
-### Events {#events}
+### Events 
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
@@ -50,7 +50,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | search | Trigger when prefix hit | (text: string, prefix: string) =&gt; void | - |
 | update:value | - | (value: string) =&gt; void | - |
 
-### Slots {#slots}
+### Slots
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |

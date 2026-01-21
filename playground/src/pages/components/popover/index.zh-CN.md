@@ -18,7 +18,7 @@ demo:
 
 和 `Tooltip` 的区别是，用户可以对浮层上的元素进行操作，因此它可以承载更复杂的内容，比如链接或按钮等。
 
-## 示例 {#examples}
+## 代码演示 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">基本</demo>
@@ -33,9 +33,9 @@ demo:
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
+
+### 属性 {#props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

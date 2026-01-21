@@ -37,11 +37,10 @@ More layouts with navigation: [Layout](/components/layout).
 
 ## API
 
-### Property {#property}
 
 Common props ref：[Common props](/docs/vue/common-props)
 
-#### Menu
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -71,7 +70,34 @@ Common props ref：[Common props](/docs/vue/common-props)
 | extraRender | Custom extra render | (item: RenderItem) => any | - | - |
 | popupRender | Custom popup renderer for submenu | (node: VueNode, info: { item: SubMenuProps; keys: string[] }) => VueNode | - | - |
 
-### ItemType {#itemtype}
+### Events
+
+| Event | Description | Type | Version |
+| --- | --- | --- | --- |
+| click | Called when a menu item is clicked | (info: MenuInfo) => void | - |
+| select | Called when a menu item is selected | (info: SelectInfo) => void | - |
+| deselect | Called when a menu item is deselected (multiple mode only) | (info: SelectInfo) => void | - |
+| openChange | Called when sub-menus are opened or closed | (openKeys: string[]) => void | - |
+
+### Slots
+
+| Slot | Description | Type | Version |
+| --- | --- | --- | --- |
+| expandIcon | Custom expand icon | () => any | - |
+| labelRender | Customize label content | (item: RenderItem) => any | - |
+| extraRender | Customize extra content | (item: RenderItem) => any | - |
+| itemIcon | Custom item icon | (props: MenuItemProps & RenderIconInfo) => any | - |
+
+### Methods
+
+| Method | Description | Type | Version |
+| --- | --- | --- | --- |
+| menu | Menu ref | VcMenuRef \| null | - |
+| focus | Focus menu | (options?: FocusOptions) => void | - |
+
+## Types
+
+### ItemType 
 
 > type ItemType = MenuItemType | SubMenuType | MenuItemGroupType | MenuDividerType | null;
 
@@ -132,31 +158,6 @@ const dividerItem = {
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | dashed | Whether line is dashed | boolean | false | - |
-
-### Events {#events}
-
-| Event | Description | Type | Version |
-| --- | --- | --- | --- |
-| click | Called when a menu item is clicked | (info: MenuInfo) => void | - |
-| select | Called when a menu item is selected | (info: SelectInfo) => void | - |
-| deselect | Called when a menu item is deselected (multiple mode only) | (info: SelectInfo) => void | - |
-| openChange | Called when sub-menus are opened or closed | (openKeys: string[]) => void | - |
-
-### Slots {#slots}
-
-| Slot | Description | Type | Version |
-| --- | --- | --- | --- |
-| expandIcon | Custom expand icon | () => any | - |
-| labelRender | Customize label content | (item: RenderItem) => any | - |
-| extraRender | Customize extra content | (item: RenderItem) => any | - |
-| itemIcon | Custom item icon | (props: MenuItemProps & RenderIconInfo) => any | - |
-
-### Methods {#methods}
-
-| Method | Description | Type | Version |
-| --- | --- | --- | --- |
-| menu | Menu ref | VcMenuRef \| null | - |
-| focus | Focus menu | (options?: FocusOptions) => void | - |
 
 ## FAQ
 

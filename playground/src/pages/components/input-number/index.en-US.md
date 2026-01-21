@@ -20,9 +20,9 @@ demo:
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props {#props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |

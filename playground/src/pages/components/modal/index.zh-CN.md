@@ -18,7 +18,7 @@ demo:
 
 另外当需要一个简洁的确认框询问用户时，可以使用 [`App.useApp`](/components/app-cn/) 封装的语法糖方法。
 
-## 示例 {#examples}
+## 代码演示 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">基本</demo>
@@ -42,9 +42,9 @@ demo:
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
+
+### 属性 {#props}
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -83,11 +83,6 @@ demo:
 | wrapProps | 对话框外层容器属性 | Record<string, any> | - | - |
 | zIndex | 设置 Modal 的 `z-index` | number | 1000 | - |
 
-#### 注意
-
-- `<a-modal />` 默认关闭后状态不会自动清空，如果希望每次打开都是新内容，请设置 `destroyOnHidden`。
-- `<a-modal />` 和 Form 一起配合使用时，设置 `destroyOnHidden` 也不会在 Modal 关闭时销毁表单字段数据，需要设置 `<a-form :preserve="false" />`。
-- `Modal.method()` RTL 模式仅支持 hooks 用法。
 
 ### 事件 {#events}
 
@@ -108,6 +103,13 @@ demo:
 | cancelText | 取消按钮文字 | () => any | - |
 | closeIcon | 自定义关闭图标 | () => any | - |
 | modalRender | 自定义渲染内容 | (node: any) => any | - |
+
+
+### 注意
+
+- `<a-modal />` 默认关闭后状态不会自动清空，如果希望每次打开都是新内容，请设置 `destroyOnHidden`。
+- `<a-modal />` 和 Form 一起配合使用时，设置 `destroyOnHidden` 也不会在 Modal 关闭时销毁表单字段数据，需要设置 `<a-form :preserve="false" />`。
+- `Modal.method()` RTL 模式仅支持 hooks 用法。
 
 ### Modal.method() {#modalmethod}
 

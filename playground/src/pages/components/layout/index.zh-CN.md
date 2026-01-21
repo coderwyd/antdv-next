@@ -92,13 +92,15 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
 
 布局容器。
 
+#### 属性 {#layout-props}
+
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | hasSider | 表示子元素里有 Sider，一般不用指定。可用于服务端渲染时避免样式闪动 | boolean | - |
 
-### Layout.Sider
+### LayoutSider
 
-#### 属性 {#layout-sider-property}
+#### 属性 {#layoutsider-props}
 
 | 参数 | 说明 | 类型                                            | 默认值 |
 | --- | --- |-----------------------------------------------| --- |
@@ -112,20 +114,22 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
 | width | 宽度 | number \| string                              | 200 |
 | zeroWidthTriggerStyle | 指定当 `collapsedWidth` 为 0 时出现的特殊 trigger 的样式 | object                                        | - |
 
-#### 事件 {#layout-sider-events}
+#### 事件 {#layoutsider-events}
 
 | 参数         | 说明 | 类型                         | 默认值 |
 |------------| --- |----------------------------| --- |
 | breakpoint | 触发响应式布局[断点](/components/grid-cn#api)时的回调 | (broken) =\&gt; &#123;&#125;          | - |
 | collapse   | 展开-收起时的回调函数，有点击 trigger 以及响应式反馈两种方式可以触发 | (collapsed, type) =\&gt; &#123;&#125; | - |
 
-#### 插槽 {#layout-sider-slots}
+#### 插槽 {#layoutsider-slots}
 
 | 名称    | 说明           | 参数 |
 |-------|--------------|----|
 | trigger | 自定义 trigger，设置为 null 时隐藏 trigger       | -  |
 
-#### breakpoint width
+## 类型 {#types}
+
+### breakpoint width
 
 ```js
 {

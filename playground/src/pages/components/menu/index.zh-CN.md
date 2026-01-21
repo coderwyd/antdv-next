@@ -38,11 +38,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Vn4XSqJFAxcAAA
 
 ## API
 
-### 属性 {#property}
 
 通用属性参考：[通用属性](/docs/vue/common-props)
 
-#### Menu
+### 属性 {#props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -71,6 +70,33 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Vn4XSqJFAxcAAA
 | labelRender | 自定义菜单项标签渲染 | (item: RenderItem) => any | - | - |
 | extraRender | 自定义菜单项额外内容渲染 | (item: RenderItem) => any | - | - |
 | popupRender | 自定义子菜单的弹出框 | (node: VueNode, info: { item: SubMenuProps; keys: string[] }) => VueNode | - | - |
+
+### 事件 {#events}
+
+| 事件 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| click | 点击 MenuItem 调用此函数 | (info: MenuInfo) => void | - |
+| select | 被选中时调用 | (info: SelectInfo) => void | - |
+| deselect | 取消选中时调用，仅在 multiple 生效 | (info: SelectInfo) => void | - |
+| openChange | SubMenu 展开/关闭的回调 | (openKeys: string[]) => void | - |
+
+### 插槽 {#slots}
+
+| 插槽 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| expandIcon | 自定义展开图标 | () => any | - |
+| labelRender | 自定义菜单项标签 | (item: RenderItem) => any | - |
+| extraRender | 自定义菜单项额外内容 | (item: RenderItem) => any | - |
+| itemIcon | 自定义菜单项图标 | (props: MenuItemProps & RenderIconInfo) => any | - |
+
+### 方法 {#methods}
+
+| 方法 | 说明 | 类型 | 版本 |
+| --- | --- | --- | --- |
+| menu | Menu 实例 | VcMenuRef \| null | - |
+| focus | 聚焦菜单 | (options?: FocusOptions) => void | - |
+
+## 类型 {#types}
 
 ### ItemType {#itemtype}
 
@@ -133,31 +159,6 @@ const dividerItem = {
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | dashed | 是否虚线 | boolean | false | - |
-
-### 事件 {#events}
-
-| 事件 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
-| click | 点击 MenuItem 调用此函数 | (info: MenuInfo) => void | - |
-| select | 被选中时调用 | (info: SelectInfo) => void | - |
-| deselect | 取消选中时调用，仅在 multiple 生效 | (info: SelectInfo) => void | - |
-| openChange | SubMenu 展开/关闭的回调 | (openKeys: string[]) => void | - |
-
-### 插槽 {#slots}
-
-| 插槽 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
-| expandIcon | 自定义展开图标 | () => any | - |
-| labelRender | 自定义菜单项标签 | (item: RenderItem) => any | - |
-| extraRender | 自定义菜单项额外内容 | (item: RenderItem) => any | - |
-| itemIcon | 自定义菜单项图标 | (props: MenuItemProps & RenderIconInfo) => any | - |
-
-### 方法 {#methods}
-
-| 方法 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
-| menu | Menu 实例 | VcMenuRef \| null | - |
-| focus | 聚焦菜单 | (options?: FocusOptions) => void | - |
 
 ## FAQ
 

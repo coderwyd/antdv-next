@@ -91,13 +91,15 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 The wrapper.
 
+#### Props {#layout-props}
+
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
 | hasSider | Whether contain Sider in children, don't have to assign it normally. Useful in ssr avoid style flickering | boolean | - |
 
-### Layout.Sider
+### LayoutSider
 
-#### Property {#layout-sider-property}
+#### Props {#layoutsider-props}
 
 The sidebar.
 
@@ -113,14 +115,16 @@ The sidebar.
 | width | Width of the sidebar | number \| string | 200 |
 | zeroWidthTriggerStyle | To customize the styles of the special trigger that appears when `collapsedWidth` is 0 | object | - |
 
-#### Events {#layout-sider-events}
+#### Events {#layoutsider-events}
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
 | breakpoint | The callback function, executed when [breakpoints](/components/grid/#api) changed | (broken) =\&gt; &#123;&#125; | - |
 | collapse | The callback function, executed by clicking the trigger or activating the responsive layout | (collapsed, type) =\&gt; &#123;&#125; | - |
 
-#### breakpoint width
+## Types
+
+### Breakpoint width
 
 ```js
 {

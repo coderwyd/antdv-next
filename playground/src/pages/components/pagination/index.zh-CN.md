@@ -17,7 +17,7 @@ demo:
 - 当加载/渲染所有数据将花费很多时间时；
 - 可切换页码浏览数据。
 
-## 示例 {#examples}
+## 代码演示 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">基本</demo>
@@ -36,9 +36,9 @@ demo:
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
+
+### 属性 {#props}
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

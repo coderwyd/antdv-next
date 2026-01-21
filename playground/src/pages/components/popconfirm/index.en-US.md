@@ -11,13 +11,13 @@ demo:
 
 <DocHeading></DocHeading>
 
-## When To Use {#when-to-use}
+## When To Use 
 
 A simple and compact dialog used for asking for user confirmation.
 
 The difference with the `confirm` modal dialog is that it's more lightweight than the static popped full-screen confirm modal.
 
-## Examples {#examples}
+## Examples
 
 <demo-group>
   <demo src="./demo/basic.vue">Basic</demo>
@@ -33,9 +33,9 @@ The difference with the `confirm` modal dialog is that it's more lightweight tha
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
+
+### Props
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
