@@ -5,10 +5,10 @@ packages:
 cleanupUnusedCatalogs: true
 
 overrides:
-  '@v-c/resize-observer': ^1.0.7
-  '@v-c/trigger': ^1.0.5
-  '@v-c/util': ^1.0.8
-  vite: ^8.0.0-beta.5
+  '@v-c/resize-observer': 'catalog:'
+  '@v-c/trigger': 'catalog:'
+  '@v-c/util': 'catalog:'
+  vite: 'catalog:'
 
 catalog:
   '@ant-design/colors': 7.2.1
