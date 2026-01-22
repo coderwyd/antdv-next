@@ -45,17 +45,5 @@
     "vite-plugin-tsx-resolve-types": "catalog:",
     "vitest": "catalog:",
     "vue-tsc": "catalog:"
-  },
-  "pnpm": {
-    "overrides": {
-      "@v-c/resize-observer": "catalog:",
-      "@v-c/trigger": "catalog:",
-      "@v-c/util": "catalog:",
-      "vite": "catalog:"
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "less"
-    ]
   }
 }
